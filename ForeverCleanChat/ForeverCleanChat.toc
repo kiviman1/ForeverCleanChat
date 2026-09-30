@@ -1,0 +1,15 @@
+## Interface: 16001
+## Title: Forever Clean Chat
+## Notes: Quiet, local filtering of commercial chat spam. /fcc
+## Author: Kivanc
+## Version: 1.0.0
+## SavedVariables: ForeverCleanChatDB
+
+Data.generated.lua
+Normalize.lua
+Rules.lua
+Core.lua
+Settings.lua
+Commands.lua
+UI.lua
+Minimap.lua

@@ -1,0 +1,44 @@
+Forever Clean Chat 1.0.0 - ACTUALLY EXECUTED LOCAL TEST REPORT
+
+Source dataset: 2026-09-30.1
+Executed at UTC: 2026-09-30T18:09:44.566840+00:00
+Host Python: 3.14.4 (C:\Python314\python.exe)
+
+Original unmodified v0.1.0 baseline, run before edits: 194/194 on Lua 5.1 and 5.3.
+Adapted baseline expectation changes: tests/README.md; original JSON fixtures unchanged.
+
+lupa.lua51 / Lua 5.1:
+  Adapted regression: 194/194
+  Original 595 JSON fixtures x 2 profiles (classifier): 1190/1190
+  Original JSON fixtures x 2 profiles (mock callbacks): 1190/1190
+  Independent 41 adversarial cases x 2 profiles (classifier): 82/82
+  Independent adversarial cases x 2 profiles (mock callbacks): 82/82
+  Research engineering/extra assertions: 138
+  Independent engineering assertions: 111
+  Control panel and minimap interaction assertions: 597/597
+
+lupa.lua53 / Lua 5.3:
+  Adapted regression: 194/194
+  Original 595 JSON fixtures x 2 profiles (classifier): 1190/1190
+  Original JSON fixtures x 2 profiles (mock callbacks): 1190/1190
+  Independent 41 adversarial cases x 2 profiles (classifier): 82/82
+  Independent adversarial cases x 2 profiles (mock callbacks): 82/82
+  Research engineering/extra assertions: 138
+  Independent engineering assertions: 111
+  Control panel and minimap interaction assertions: 597/597
+
+Compiler: 34 unit tests actually executed; exit code 0.
+Determinism: 2 independent compilations produced identical bytes; generated files match.
+24 of 26 research contracts validated locally; live_scope pending; bubbles scope documented only.
+
+Actual live WoW/Forever validation: NOT RUN. Mock game APIs, actual Lua interpreters.
+Real client callback layout, secret-value behavior, event support, interaction with other addons,
+rendering, chat bubbles, and live FPS/memory have NOT been verified.
+Tests sent no real chat messages and performed no report/ignore actions.
+UI tests exercised stateful native-frame doubles; they did not render the WoW client.
+The release installer copies only ForeverCleanChat runtime/docs and verifies file hashes.
+Forever Mini Reminder was not modified.
+
+Detailed results: tests/results/latest.md and latest.json.
+Migration examples (mock settings): tests/results/migration_examples.json.
+Run: python tests/run_all.py

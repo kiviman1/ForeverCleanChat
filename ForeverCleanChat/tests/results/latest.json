@@ -1,0 +1,759 @@
+{
+  "executed_at_utc": "2026-09-30T18:12:22.557636+00:00",
+  "python_executable": "C:\\Python314\\python.exe",
+  "python_version": "3.14.4",
+  "original_baseline": {
+    "lua51": {
+      "passed": 194,
+      "total": 194
+    },
+    "lua53": {
+      "passed": 194,
+      "total": 194
+    }
+  },
+  "regression_expectation_changes": [
+    "The v0.1.0 regression suite explicitly uses balanced; new installations default to strict.",
+    "Bare character-per-dot/hyphen strings are allowed instead of globally compacted into a domain.",
+    "Bare leet labels and leet TLDs are allowed without separate commercial context.",
+    "Balanced R025/R027 require defined promotion evidence: Book a dungeon carry at example.gg, Buy professions at example.net, and We cover your leveling, dungeons and gearing. Order now. now allow.",
+    "Newline-separated words are not glued into a domain.",
+    "Canonical keys retain dots and hyphens: example.com replaces examplecom.",
+    "Schema 2 user domains and built-in exclusions are separate layers.",
+    "Unreadable author values fail open before identity, cache or logging.",
+    "A conflicting sender GUID takes precedence over an exact self-name match."
+  ],
+  "runtimes": [
+    {
+      "engine": "lupa.lua51",
+      "lua_version": "5.1",
+      "suites": {
+        "regression": {
+          "runtime": "Lua 5.1",
+          "total": 194,
+          "live_validation": "not_run",
+          "failures": {},
+          "suite": "v0.1.0_regression_adapted",
+          "passed": 194,
+          "failed": 0,
+          "elapsed_seconds": 0.216
+        },
+        "research": {
+          "runtime": "Lua 5.1",
+          "classification": {
+            "failures": {},
+            "total": 1190,
+            "passed": 1190,
+            "failed": 0
+          },
+          "engineering_assertions": 138,
+          "contracts": [
+            {
+              "id": "contract_api_namespace",
+              "assertions": 6,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_api_legacy",
+              "assertions": 3,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_api_missing",
+              "assertions": 8,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_api_signature",
+              "assertions": 4,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_api_secret",
+              "assertions": 7,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_api_bad_type",
+              "assertions": 7,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_api_invalid_utf8",
+              "assertions": 11,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_api_arg_layout",
+              "assertions": 4,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_multi_frames",
+              "assertions": 7,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_dedupe_fallback",
+              "assertions": 5,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_cache_config",
+              "assertions": 8,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_cache_bound",
+              "assertions": 5,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_long_input",
+              "assertions": 4,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_normalization_work",
+              "assertions": 4,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_hidden_link_payload",
+              "assertions": 5,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_display_safe",
+              "assertions": 7,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_no_user_identity_inference",
+              "assertions": 4,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_no_network",
+              "assertions": 3,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_regression_existing",
+              "assertions": 0,
+              "status": "passed_lua",
+              "evidence": "Regression results are separately recorded; changed expectations are documented in tests/README.md."
+            },
+            {
+              "id": "contract_migration_saved",
+              "assertions": 12,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_migration_missing",
+              "assertions": 6,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_migration_invalid",
+              "assertions": 5,
+              "status": "passed_mock"
+            },
+            {
+              "id": "contract_compile_deterministic",
+              "assertions": 0,
+              "status": "passed_offline",
+              "evidence": "Two independent Python compilation calls produced identical Lua artifact bytes."
+            },
+            {
+              "id": "contract_test_parity",
+              "assertions": 0,
+              "status": "passed_lua",
+              "evidence": "All 595 original classification cases ran in balanced and strict on this real Lua runtime."
+            },
+            {
+              "id": "contract_live_scope",
+              "assertions": 0,
+              "status": "pending_live_client",
+              "evidence": "No access to an active target Forever client; real API support, callback layout and scope are unverified."
+            },
+            {
+              "id": "contract_no_bubbles_claim",
+              "assertions": 0,
+              "status": "documented_scope_limit",
+              "evidence": "Only registered chat-frame filter events are mocked; no bubbles/mailbox/group-finder support is claimed."
+            }
+          ],
+          "target_client": "not_run",
+          "suite": "research",
+          "extra": {
+            "id": "extra_domain_identity_and_boundaries",
+            "assertions": 13,
+            "status": "passed_mock"
+          },
+          "adapter": {
+            "failures": {},
+            "total": 1190,
+            "passed": 1190,
+            "failed": 0
+          },
+          "elapsed_seconds": 4.236
+        },
+        "adversarial": {
+          "classification": {
+            "failures": {},
+            "total": 82,
+            "passed": 82,
+            "failed": 0
+          },
+          "engineering_assertions": 111,
+          "checks": [
+            {
+              "id": "local_why_pack_do_not_change_counters",
+              "assertions": 7,
+              "status": "passed_mock"
+            },
+            {
+              "id": "domain_allow_keeps_independent_cash_rule",
+              "assertions": 6,
+              "status": "passed_mock"
+            },
+            {
+              "id": "modern_throw_legacy_fallback",
+              "assertions": 12,
+              "status": "passed_mock"
+            },
+            {
+              "id": "modern_false_legacy_fallback",
+              "assertions": 12,
+              "status": "passed_mock"
+            },
+            {
+              "id": "modern_partial_legacy_fallback",
+              "assertions": 12,
+              "status": "passed_mock"
+            },
+            {
+              "id": "false_registry_without_fallback_is_unsupported",
+              "assertions": 6,
+              "status": "passed_mock"
+            },
+            {
+              "id": "schema2_reload_preserves_exclusions_backup_review",
+              "assertions": 22,
+              "status": "passed_mock"
+            },
+            {
+              "id": "legacy_removed_builtin_survives_pack_reload",
+              "assertions": 8,
+              "status": "passed_mock"
+            },
+            {
+              "id": "normalization_structural_offsets_and_scope",
+              "assertions": 24,
+              "status": "passed_mock"
+            },
+            {
+              "id": "normalization_uses_generated_work_and_leet_limits",
+              "assertions": 2,
+              "status": "passed_mock"
+            }
+          ],
+          "adapter": {
+            "failures": {},
+            "total": 82,
+            "passed": 82,
+            "failed": 0
+          },
+          "runtime": "Lua 5.1",
+          "target_client": "not_run",
+          "case_count": 41,
+          "failed": 0,
+          "suite": "adversarial",
+          "elapsed_seconds": 0.606
+        },
+        "ui": {
+          "total": 616,
+          "checks": [
+            {
+              "id": "startup_and_panel_navigation",
+              "assertions": 20,
+              "status": "passed_mock"
+            },
+            {
+              "id": "minimap_click_tooltip_and_visibility",
+              "assertions": 15,
+              "status": "passed_mock"
+            },
+            {
+              "id": "overview_controls_and_shortcuts",
+              "assertions": 9,
+              "status": "passed_mock"
+            },
+            {
+              "id": "settings_immediately_change_filtering",
+              "assertions": 120,
+              "status": "passed_mock"
+            },
+            {
+              "id": "lists_validate_edit_and_preserve_builtin_pack",
+              "assertions": 29,
+              "status": "passed_mock"
+            },
+            {
+              "id": "lists_search_paging_and_row_selection",
+              "assertions": 7,
+              "status": "passed_mock"
+            },
+            {
+              "id": "builtin_domain_toggle_works_with_full_personal_list",
+              "assertions": 108,
+              "status": "passed_mock"
+            },
+            {
+              "id": "hidden_log_bounded_paging_selection_and_actions",
+              "assertions": 79,
+              "status": "passed_mock"
+            },
+            {
+              "id": "maximum_lifetime_counter_remains_valid_after_reload",
+              "assertions": 4,
+              "status": "passed_mock"
+            },
+            {
+              "id": "long_message_detail_native_scroll_handlers",
+              "assertions": 8,
+              "status": "passed_mock"
+            },
+            {
+              "id": "local_test_tab_and_slash_never_send_or_count",
+              "assertions": 17,
+              "status": "passed_mock"
+            },
+            {
+              "id": "window_and_preferences_survive_reload",
+              "assertions": 28,
+              "status": "passed_mock"
+            },
+            {
+              "id": "minimap_native_drag_angles_and_scaled_geometry",
+              "assertions": 35,
+              "status": "passed_mock"
+            },
+            {
+              "id": "settings_validation_caps_and_malformed_saved_ui",
+              "assertions": 117,
+              "status": "passed_mock"
+            },
+            {
+              "id": "missing_optional_apis_and_ui_errors_do_not_disable_filter",
+              "assertions": 13,
+              "status": "passed_mock"
+            },
+            {
+              "id": "native_regions_have_nonnegative_geometry",
+              "assertions": 7,
+              "status": "passed_mock"
+            }
+          ],
+          "passed": 616,
+          "runtime": "Lua 5.1",
+          "native_rendering": "not_run",
+          "target_client": "not_run",
+          "suite": "ui",
+          "failed": 0,
+          "failures": {},
+          "elapsed_seconds": 0.817
+        }
+      },
+      "output": [
+        "Runtime: Lua 5.1",
+        "Checks: 194/194 passed; 0 failed",
+        "Live WoW/Forever validation: NOT RUN (mocked APIs only)",
+        "Runtime: Lua 5.1",
+        "JSON classifier/profile checks: 1190/1190",
+        "JSON mocked adapter/profile checks: 1190/1190",
+        "Engineering contracts in Lua mocks: 21 passed, 0 failed, 5 handled separately or pending",
+        "Live WoW/Forever validation: NOT RUN",
+        "Runtime: Lua 5.1",
+        "Independent adversarial classifier/profile checks: 82/82",
+        "Independent adversarial mock callback/profile checks: 82/82",
+        "Independent adversarial engineering assertions: 111; 10 groups; 0 failures",
+        "UI interactions: 616/616 passed on Lua 5.1; native rendering and live Forever: NOT RUN"
+      ]
+    },
+    {
+      "engine": "lupa.lua53",
+      "lua_version": "5.3",
+      "suites": {
+        "regression": {
+          "runtime": "Lua 5.3",
+          "failed": 0,
+          "total": 194,
+          "failures": {},
+          "live_validation": "not_run",
+          "suite": "v0.1.0_regression_adapted",
+          "passed": 194,
+          "elapsed_seconds": 0.4
+        },
+        "research": {
+          "target_client": "not_run",
+          "runtime": "Lua 5.3",
+          "engineering_assertions": 138,
+          "classification": {
+            "failures": {},
+            "passed": 1190,
+            "failed": 0,
+            "total": 1190
+          },
+          "extra": {
+            "assertions": 13,
+            "status": "passed_mock",
+            "id": "extra_domain_identity_and_boundaries"
+          },
+          "contracts": [
+            {
+              "assertions": 6,
+              "status": "passed_mock",
+              "id": "contract_api_namespace"
+            },
+            {
+              "assertions": 3,
+              "status": "passed_mock",
+              "id": "contract_api_legacy"
+            },
+            {
+              "assertions": 8,
+              "status": "passed_mock",
+              "id": "contract_api_missing"
+            },
+            {
+              "assertions": 4,
+              "status": "passed_mock",
+              "id": "contract_api_signature"
+            },
+            {
+              "assertions": 7,
+              "status": "passed_mock",
+              "id": "contract_api_secret"
+            },
+            {
+              "assertions": 7,
+              "status": "passed_mock",
+              "id": "contract_api_bad_type"
+            },
+            {
+              "assertions": 11,
+              "status": "passed_mock",
+              "id": "contract_api_invalid_utf8"
+            },
+            {
+              "assertions": 4,
+              "status": "passed_mock",
+              "id": "contract_api_arg_layout"
+            },
+            {
+              "assertions": 7,
+              "status": "passed_mock",
+              "id": "contract_multi_frames"
+            },
+            {
+              "assertions": 5,
+              "status": "passed_mock",
+              "id": "contract_dedupe_fallback"
+            },
+            {
+              "assertions": 8,
+              "status": "passed_mock",
+              "id": "contract_cache_config"
+            },
+            {
+              "assertions": 5,
+              "status": "passed_mock",
+              "id": "contract_cache_bound"
+            },
+            {
+              "assertions": 4,
+              "status": "passed_mock",
+              "id": "contract_long_input"
+            },
+            {
+              "assertions": 4,
+              "status": "passed_mock",
+              "id": "contract_normalization_work"
+            },
+            {
+              "assertions": 5,
+              "status": "passed_mock",
+              "id": "contract_hidden_link_payload"
+            },
+            {
+              "assertions": 7,
+              "status": "passed_mock",
+              "id": "contract_display_safe"
+            },
+            {
+              "assertions": 4,
+              "status": "passed_mock",
+              "id": "contract_no_user_identity_inference"
+            },
+            {
+              "assertions": 3,
+              "status": "passed_mock",
+              "id": "contract_no_network"
+            },
+            {
+              "assertions": 0,
+              "status": "passed_lua",
+              "id": "contract_regression_existing",
+              "evidence": "Regression results are separately recorded; changed expectations are documented in tests/README.md."
+            },
+            {
+              "assertions": 12,
+              "status": "passed_mock",
+              "id": "contract_migration_saved"
+            },
+            {
+              "assertions": 6,
+              "status": "passed_mock",
+              "id": "contract_migration_missing"
+            },
+            {
+              "assertions": 5,
+              "status": "passed_mock",
+              "id": "contract_migration_invalid"
+            },
+            {
+              "assertions": 0,
+              "status": "passed_offline",
+              "id": "contract_compile_deterministic",
+              "evidence": "Two independent Python compilation calls produced identical Lua artifact bytes."
+            },
+            {
+              "assertions": 0,
+              "status": "passed_lua",
+              "id": "contract_test_parity",
+              "evidence": "All 595 original classification cases ran in balanced and strict on this real Lua runtime."
+            },
+            {
+              "assertions": 0,
+              "status": "pending_live_client",
+              "id": "contract_live_scope",
+              "evidence": "No access to an active target Forever client; real API support, callback layout and scope are unverified."
+            },
+            {
+              "assertions": 0,
+              "status": "documented_scope_limit",
+              "id": "contract_no_bubbles_claim",
+              "evidence": "Only registered chat-frame filter events are mocked; no bubbles/mailbox/group-finder support is claimed."
+            }
+          ],
+          "suite": "research",
+          "adapter": {
+            "failures": {},
+            "passed": 1190,
+            "failed": 0,
+            "total": 1190
+          },
+          "elapsed_seconds": 5.993
+        },
+        "adversarial": {
+          "target_client": "not_run",
+          "checks": [
+            {
+              "assertions": 7,
+              "status": "passed_mock",
+              "id": "local_why_pack_do_not_change_counters"
+            },
+            {
+              "assertions": 6,
+              "status": "passed_mock",
+              "id": "domain_allow_keeps_independent_cash_rule"
+            },
+            {
+              "assertions": 12,
+              "status": "passed_mock",
+              "id": "modern_throw_legacy_fallback"
+            },
+            {
+              "assertions": 12,
+              "status": "passed_mock",
+              "id": "modern_false_legacy_fallback"
+            },
+            {
+              "assertions": 12,
+              "status": "passed_mock",
+              "id": "modern_partial_legacy_fallback"
+            },
+            {
+              "assertions": 6,
+              "status": "passed_mock",
+              "id": "false_registry_without_fallback_is_unsupported"
+            },
+            {
+              "assertions": 22,
+              "status": "passed_mock",
+              "id": "schema2_reload_preserves_exclusions_backup_review"
+            },
+            {
+              "assertions": 8,
+              "status": "passed_mock",
+              "id": "legacy_removed_builtin_survives_pack_reload"
+            },
+            {
+              "assertions": 24,
+              "status": "passed_mock",
+              "id": "normalization_structural_offsets_and_scope"
+            },
+            {
+              "assertions": 2,
+              "status": "passed_mock",
+              "id": "normalization_uses_generated_work_and_leet_limits"
+            }
+          ],
+          "engineering_assertions": 111,
+          "adapter": {
+            "failures": {},
+            "passed": 82,
+            "failed": 0,
+            "total": 82
+          },
+          "case_count": 41,
+          "failed": 0,
+          "runtime": "Lua 5.3",
+          "suite": "adversarial",
+          "classification": {
+            "failures": {},
+            "passed": 82,
+            "failed": 0,
+            "total": 82
+          },
+          "elapsed_seconds": 0.504
+        },
+        "ui": {
+          "target_client": "not_run",
+          "failures": {},
+          "checks": [
+            {
+              "assertions": 20,
+              "status": "passed_mock",
+              "id": "startup_and_panel_navigation"
+            },
+            {
+              "assertions": 15,
+              "status": "passed_mock",
+              "id": "minimap_click_tooltip_and_visibility"
+            },
+            {
+              "assertions": 9,
+              "status": "passed_mock",
+              "id": "overview_controls_and_shortcuts"
+            },
+            {
+              "assertions": 120,
+              "status": "passed_mock",
+              "id": "settings_immediately_change_filtering"
+            },
+            {
+              "assertions": 29,
+              "status": "passed_mock",
+              "id": "lists_validate_edit_and_preserve_builtin_pack"
+            },
+            {
+              "assertions": 7,
+              "status": "passed_mock",
+              "id": "lists_search_paging_and_row_selection"
+            },
+            {
+              "assertions": 108,
+              "status": "passed_mock",
+              "id": "builtin_domain_toggle_works_with_full_personal_list"
+            },
+            {
+              "assertions": 79,
+              "status": "passed_mock",
+              "id": "hidden_log_bounded_paging_selection_and_actions"
+            },
+            {
+              "assertions": 4,
+              "status": "passed_mock",
+              "id": "maximum_lifetime_counter_remains_valid_after_reload"
+            },
+            {
+              "assertions": 8,
+              "status": "passed_mock",
+              "id": "long_message_detail_native_scroll_handlers"
+            },
+            {
+              "assertions": 17,
+              "status": "passed_mock",
+              "id": "local_test_tab_and_slash_never_send_or_count"
+            },
+            {
+              "assertions": 28,
+              "status": "passed_mock",
+              "id": "window_and_preferences_survive_reload"
+            },
+            {
+              "assertions": 35,
+              "status": "passed_mock",
+              "id": "minimap_native_drag_angles_and_scaled_geometry"
+            },
+            {
+              "assertions": 117,
+              "status": "passed_mock",
+              "id": "settings_validation_caps_and_malformed_saved_ui"
+            },
+            {
+              "assertions": 13,
+              "status": "passed_mock",
+              "id": "missing_optional_apis_and_ui_errors_do_not_disable_filter"
+            },
+            {
+              "assertions": 7,
+              "status": "passed_mock",
+              "id": "native_regions_have_nonnegative_geometry"
+            }
+          ],
+          "native_rendering": "not_run",
+          "runtime": "Lua 5.3",
+          "failed": 0,
+          "total": 616,
+          "suite": "ui",
+          "passed": 616,
+          "elapsed_seconds": 0.681
+        }
+      },
+      "output": [
+        "Runtime: Lua 5.3",
+        "Checks: 194/194 passed; 0 failed",
+        "Live WoW/Forever validation: NOT RUN (mocked APIs only)",
+        "Runtime: Lua 5.3",
+        "JSON classifier/profile checks: 1190/1190",
+        "JSON mocked adapter/profile checks: 1190/1190",
+        "Engineering contracts in Lua mocks: 21 passed, 0 failed, 5 handled separately or pending",
+        "Live WoW/Forever validation: NOT RUN",
+        "Runtime: Lua 5.3",
+        "Independent adversarial classifier/profile checks: 82/82",
+        "Independent adversarial mock callback/profile checks: 82/82",
+        "Independent adversarial engineering assertions: 111; 10 groups; 0 failures",
+        "UI interactions: 616/616 passed on Lua 5.3; native rendering and live Forever: NOT RUN"
+      ]
+    }
+  ],
+  "compiler": {
+    "status": "passed",
+    "separate_compilations": 2,
+    "hashes": {
+      "Data.generated.lua": "e6762438cf4ef60b4a084389532fa7aeb0c496f3b215d7f27b8e25448df7cebb",
+      "tests/Fixtures.generated.lua": "240f6e933d7f8df717fe5638735acc0a3412ab1457cb86306e1597092eaff476"
+    },
+    "compiler_unit_tests": {
+      "exit_code": 0,
+      "tests_run": 34,
+      "stdout": "",
+      "stderr": "test_ast_has_work_budget (__main__.CompilerTests.test_ast_has_work_budget) ... ok\ntest_ast_only_supports_declared_boolean_nodes (__main__.CompilerTests.test_ast_only_supports_declared_boolean_nodes) ... ok\ntest_check_only_detects_stale_output_and_never_writes (__main__.CompilerTests.test_check_only_detects_stale_output_and_never_writes) ... ok\ntest_counts_are_recomputed (__main__.CompilerTests.test_counts_are_recomputed) ... ok\ntest_current_source_validates_all_counts (__main__.CompilerTests.test_current_source_validates_all_counts) ... ok\ntest_domain_does_not_infer_other_tlds_or_erase_hyphens (__main__.CompilerTests.test_domain_does_not_infer_other_tlds_or_erase_hyphens) ... ok\ntest_domain_is_lowercase_ascii_root (__main__.CompilerTests.test_domain_is_lowercase_ascii_root) ... ok\ntest_domains_are_unique (__main__.CompilerTests.test_domains_are_unique) ... ok\ntest_duplicate_json_key_is_not_silently_overwritten (__main__.CompilerTests.test_duplicate_json_key_is_not_silently_overwritten) ... ok\ntest_evidence_tier_must_resolve_to_supporting_source (__main__.CompilerTests.test_evidence_tier_must_resolve_to_supporting_source) ... ok\ntest_existing_mode_preservation_is_required (__main__.CompilerTests.test_existing_mode_preservation_is_required) ... ok\ntest_experimental_rules_remain_disabled_review_only (__main__.CompilerTests.test_experimental_rules_remain_disabled_review_only) ... ok\ntest_fixture_byte_budget_is_not_codepoint_count (__main__.CompilerTests.test_fixture_byte_budget_is_not_codepoint_count) ... ok\ntest_fixture_expectations_are_legal_and_have_both_profiles (__main__.CompilerTests.test_fixture_expectations_are_legal_and_have_both_profiles) ... ok\ntest_fullwidth_mapping_must_be_finite_known_range (__main__.CompilerTests.test_fullwidth_mapping_must_be_finite_known_range) ... ok\ntest_fuzzy_cannot_hard_block (__main__.CompilerTests.test_fuzzy_cannot_hard_block) ... ok\ntest_lexicon_and_numeric_words_do_not_block_alone (__main__.CompilerTests.test_lexicon_and_numeric_words_do_not_block_alone) ... ok\ntest_lua_51_strings_escape_code_and_control_bytes (__main__.CompilerTests.test_lua_51_strings_escape_code_and_control_bytes) ... ok\ntest_missing_section (__main__.CompilerTests.test_missing_section) ... ok\ntest_nonfinite_json_is_rejected (__main__.CompilerTests.test_nonfinite_json_is_rejected) ... ok\ntest_normalization_budgets_and_leet_policy (__main__.CompilerTests.test_normalization_budgets_and_leet_policy) ... ok\ntest_output_is_deterministic_independent_of_object_key_order (__main__.CompilerTests.test_output_is_deterministic_independent_of_object_key_order) ... ok\ntest_quarantine_cannot_be_enabled (__main__.CompilerTests.test_quarantine_cannot_be_enabled) ... ok\ntest_quarantine_cannot_overlap_active (__main__.CompilerTests.test_quarantine_cannot_overlap_active) ... ok\ntest_runtime_excludes_sources_examples_and_quarantine (__main__.CompilerTests.test_runtime_excludes_sources_examples_and_quarantine) ... ok\ntest_unique_record_and_fixture_ids (__main__.CompilerTests.test_unique_record_and_fixture_ids) ... ok\ntest_unknown_evidence_cannot_activate_domain (__main__.CompilerTests.test_unknown_evidence_cannot_activate_domain) ... ok\ntest_unresolved_fixture_indicator (__main__.CompilerTests.test_unresolved_fixture_indicator) ... ok\ntest_unresolved_lexicon_reference (__main__.CompilerTests.test_unresolved_lexicon_reference) ... ok\ntest_unresolved_source_reference (__main__.CompilerTests.test_unresolved_source_reference) ... ok\ntest_user_observation_has_no_invented_vendor (__main__.CompilerTests.test_user_observation_has_no_invented_vendor) ... ok\ntest_user_observation_requires_campaign (__main__.CompilerTests.test_user_observation_requires_campaign) ... ok\ntest_vendor_domain_relationship_cannot_be_invented (__main__.CompilerTests.test_vendor_domain_relationship_cannot_be_invented) ... ok\ntest_wrong_schema_version (__main__.CompilerTests.test_wrong_schema_version) ... ok\n\n----------------------------------------------------------------------\nRan 34 tests in 0.667s\n\nOK\n"
+    }
+  },
+  "local_checks_passed": true
+}

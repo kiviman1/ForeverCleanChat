@@ -1,0 +1,19 @@
+# Local release packages and installation backups
+/backups/
+*.zip
+
+# Python caches and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Account-specific WoW saved settings
+ForeverCleanChatDB.lua
+ForeverCleanChatDB.lua.bak
+
+# Editor and OS files
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,121 @@
+{
+  "examples": [
+    {
+      "id": "preserved_custom_and_invalid_review",
+      "runtime": "Lua 5.1",
+      "environment": "isolated WoW mocks, illustrative settings only",
+      "before": {
+        "enabled": false,
+        "block": {
+          "blocked player-realm": true
+        },
+        "allow": {
+          "trusted player-realm": true
+        },
+        "phrases": {
+          "custom phrase": true
+        },
+        "domains": {
+          "mythicstorecom": "mythicstore.com",
+          "abcom": "a-b.com",
+          "badcompact": 42
+        },
+        "mode": "balanced",
+        "schema": 1,
+        "totalBlocked": 42
+      },
+      "after": {
+        "enabled": false,
+        "packVersion": "2026-09-30.1",
+        "legacyReview": [
+          {
+            "value": 42,
+            "key": "badcompact",
+            "field": "domains"
+          }
+        ],
+        "phrases": {
+          "custom phrase": true
+        },
+        "known_domain_mention_policy": "hide_all",
+        "domainDisabled": {},
+        "domainAllow": {},
+        "block": {
+          "blocked player-realm": true
+        },
+        "allow": {
+          "trusted player-realm": true
+        },
+        "migrationBackup": {
+          "enabled": false,
+          "block": {
+            "blocked player-realm": true
+          },
+          "allow": {
+            "trusted player-realm": true
+          },
+          "phrases": {
+            "custom phrase": true
+          },
+          "domains": {
+            "mythicstorecom": "mythicstore.com",
+            "abcom": "a-b.com",
+            "badcompact": 42
+          },
+          "mode": "balanced",
+          "schema": 1,
+          "totalBlocked": 42
+        },
+        "domains": {
+          "mythicstore.com": "mythicstore.com",
+          "a-b.com": "a-b.com"
+        },
+        "mode": "balanced",
+        "totalBlocked": 42,
+        "schema": 2
+      }
+    },
+    {
+      "id": "previously_removed_builtin",
+      "runtime": "Lua 5.1",
+      "environment": "isolated WoW mocks, illustrative settings only",
+      "before": {
+        "enabled": true,
+        "block": {},
+        "allow": {},
+        "phrases": {},
+        "domains": {},
+        "mode": "balanced",
+        "schema": 1,
+        "totalBlocked": 7
+      },
+      "after": {
+        "enabled": true,
+        "packVersion": "2026-09-30.1",
+        "legacyReview": {},
+        "phrases": {},
+        "known_domain_mention_policy": "hide_all",
+        "domainDisabled": {
+          "mythicstore.com": true
+        },
+        "domainAllow": {},
+        "block": {},
+        "allow": {},
+        "migrationBackup": {
+          "enabled": true,
+          "block": {},
+          "allow": {},
+          "phrases": {},
+          "domains": {},
+          "mode": "balanced",
+          "schema": 1,
+          "totalBlocked": 7
+        },
+        "domains": {},
+        "mode": "balanced",
+        "totalBlocked": 7,
+        "schema": 2
+      }
+    }
+  ]
+}
