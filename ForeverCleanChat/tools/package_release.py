@@ -9,6 +9,7 @@ import json
 from pathlib import Path
 import re
 import shutil
+import struct
 import zipfile
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -20,6 +21,35 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def write_test_summary(report, version):
+    def fraction(result):
+        return f"{result.get('passed', 0)}/{result.get('total', 0)}"
+
+    lines = [f"Forever Clean Chat {version} - ACTUALLY EXECUTED LOCAL TEST REPORT", "",
+             f"Executed at UTC: {report['executed_at_utc']}",
+             f"Host Python: {report['python_version']} ({report['python_executable']})", ""]
+    for runtime in report['runtimes']:
+        suites = runtime['suites']
+        lines += [f"{runtime['engine']} / Lua {runtime['lua_version']}:",
+                  "  Adapted regression: " + fraction(suites['regression']),
+                  "  JSON classifier/profile checks: " + fraction(suites['research']['classification']),
+                  "  JSON mock callback/profile checks: " + fraction(suites['research']['adapter']),
+                  "  Adversarial classifier/profile checks: " + fraction(suites['adversarial']['classification']),
+                  "  Adversarial mock callback/profile checks: " + fraction(suites['adversarial']['adapter']),
+                  "  Control panel and minimap interaction assertions: " + fraction(suites['ui']), ""]
+    compiler = report['compiler']
+    lines += [f"Compiler validation unit tests: {compiler['compiler_unit_tests']['tests_run']} actually executed.",
+              f"Compilation determinism: {compiler['separate_compilations']} matching compilations; checked-in artifacts match.", "",
+              "Actual live WoW/Forever validation: NOT RUN. Mock APIs, actual Lua interpreters.",
+              "UI previews render production geometry with local font/border/mask approximations, not the game client.",
+              "Tests sent no real chat messages and performed no report/ignore actions.",
+              "Settings remain account-wide; no SavedVariables files are copied by the release installer.",
+              "Forever Mini Reminder was not modified.", "",
+              "Detailed results: tests/results/latest.md and latest.json.",
+              "Run: python tests/run_all.py", ""]
+    (ROOT / 'TEST_REPORT.txt').write_text('\n'.join(lines), encoding='utf-8')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--install", type=Path, help="Existing target client's Interface/AddOns directory")
@@ -29,10 +59,21 @@ def main():
     version = re.search(r"^## Version: ([0-9.]+)$", content, re.MULTILINE).group(1)
     files = [toc.name] + [line.strip() for line in content.splitlines() if line.strip() and not line.startswith("#")]
     files += list(DOCS)
+    files += [path.relative_to(ROOT).as_posix() for path in sorted((ROOT / 'Media').rglob('*.tga'))]
+    files += ['Media/ASSETS.md']
     for name in files:
         path = (ROOT / name).resolve()
-        if path.parent != ROOT or not path.is_file():
+        if ROOT not in path.parents or not path.is_file():
             raise SystemExit(f"Invalid or missing runtime file: {name}")
+        if path.suffix == '.tga':
+            data = path.read_bytes()
+            if len(data) < 18:
+                raise SystemExit(f"Invalid texture header: {name}")
+            width, height = struct.unpack_from('<HH', data, 12)
+            if (data[1] != 0 or data[2] != 2 or data[16] != 32 or data[17] & 15 != 8
+                    or width <= 0 or height <= 0 or width & (width-1) or height & (height-1)
+                    or len(data) < 18 + data[0] + width * height * 4):
+                raise SystemExit(f"Texture must be power-of-two uncompressed RGBA TGA: {name}")
     report = json.loads(REPORT.read_text(encoding="utf-8"))
     if report.get("compiler", {}).get("status") != "passed":
         raise SystemExit("Run the full test suite before packaging.")
@@ -47,8 +88,9 @@ def main():
                 raise SystemExit(f"Failed {engine} {name} classification/callback checks.")
             if any(row.get("status") == "failed" for row in result.get("checks", []) + result.get("contracts", [])):
                 raise SystemExit(f"Failed {engine} {name} engineering checks.")
-    if any((ROOT / name).stat().st_mtime > REPORT.stat().st_mtime for name in files if name.endswith(".lua")):
-        raise SystemExit("Runtime Lua changed after the test report. Run tests again.")
+    if any((ROOT / name).stat().st_mtime > REPORT.stat().st_mtime for name in files if name.endswith((".lua", ".tga"))):
+        raise SystemExit("Runtime Lua or artwork changed after the test report. Run tests again.")
+    write_test_summary(report, version)
     archive = ROOT.parent / f"ForeverCleanChat-v{version}.zip"
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as release:
         for name in files:
@@ -70,6 +112,7 @@ def main():
             result["backup"] = str(backup)
         target.mkdir(exist_ok=True)
         for name in files:
+            (target / name).parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(ROOT / name, target / name)
             if digest(ROOT / name) != digest(target / name):
                 raise SystemExit(f"Installed file verification failed: {name}")

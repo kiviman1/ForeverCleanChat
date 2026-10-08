@@ -1,0 +1,1356 @@
+{
+  "source": "Actual production Lua frame tree on stateful native-frame doubles",
+  "limitations": [
+    "Not a WoW screenshot",
+    "Local serif font substitutes for Blizzard Friz Quadrata",
+    "Tooltip borders and portrait-mask circles approximated by Pillow"
+  ],
+  "tab": "test",
+  "mode": "strict",
+  "enabled": true,
+  "hidden_this_session": 12,
+  "width": 900,
+  "height": 700,
+  "production_scale": 0.72,
+  "regions": [
+    {
+      "y": 0,
+      "x": 0,
+      "name": "ForeverCleanChatPanel",
+      "height": 700,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 900,
+      "depth": 0
+    },
+    {
+      "colorTexture": [
+        0.036,
+        0.035,
+        0.032,
+        1
+      ],
+      "y": 24,
+      "x": 24,
+      "height": 652,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "BACKGROUND",
+      "alpha": 1,
+      "width": 852,
+      "depth": 1
+    },
+    {
+      "y": 0,
+      "x": 0,
+      "height": 700,
+      "kind": "Texture",
+      "fontSize": 12,
+      "texture": "Interface\\AddOns\\ForeverCleanChat\\Media\\Frame.tga",
+      "layer": "BACKGROUND",
+      "alpha": 1,
+      "width": 900,
+      "depth": 1
+    },
+    {
+      "y": 28,
+      "x": 41,
+      "height": 104,
+      "kind": "Texture",
+      "fontSize": 12,
+      "texture": "Interface\\AddOns\\ForeverCleanChat\\Media\\Emblem.tga",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 104,
+      "depth": 1
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "Forever Clean Chat",
+      "y": 53,
+      "x": 156,
+      "height": 51,
+      "kind": "FontString",
+      "fontSize": 36,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 684,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 1,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ]
+    },
+    {
+      "wordWrap": true,
+      "text": "v1.1.2  |  2026-09-30.1 offline rules",
+      "y": 101,
+      "x": 160,
+      "height": 22,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 610,
+      "depth": 1,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.64,
+        0.64,
+        0.61,
+        1
+      ]
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "Local test complete. No chat message sent; counters unchanged.",
+      "y": 632,
+      "x": 51,
+      "height": 22,
+      "kind": "FontString",
+      "fontSize": 17,
+      "justifyV": "TOP",
+      "justifyH": "RIGHT",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 798,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 1,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.64,
+        0.64,
+        0.61,
+        1
+      ]
+    },
+    {
+      "y": 18,
+      "x": 24,
+      "height": 126,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 800,
+      "depth": 1
+    },
+    {
+      "backdropBorderColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 29,
+      "x": 837,
+      "height": 34,
+      "kind": "Button",
+      "backdropColor": [
+        0.27,
+        0.025,
+        0.012,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 34,
+      "depth": 1
+    },
+    {
+      "lineEnd": [
+        861,
+        39
+      ],
+      "y": 29,
+      "x": 837,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        847,
+        53
+      ],
+      "vertexColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 2,
+      "depth": 2
+    },
+    {
+      "lineEnd": [
+        861,
+        53
+      ],
+      "y": 29,
+      "x": 837,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        847,
+        39
+      ],
+      "vertexColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 2,
+      "depth": 2
+    },
+    {
+      "y": 145,
+      "x": 34,
+      "height": 440,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 160,
+      "depth": 1
+    },
+    {
+      "wordWrap": true,
+      "text": "OFFLINE PROTECTION",
+      "y": 457,
+      "x": 41,
+      "height": 31,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 150,
+      "depth": 2,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ]
+    },
+    {
+      "wordWrap": true,
+      "text": "Your rules and preferences stay on this computer.",
+      "y": 491,
+      "x": 41,
+      "height": 56,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 150,
+      "depth": 2,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.64,
+        0.64,
+        0.61,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 145,
+      "x": 34,
+      "height": 36,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.067,
+        0.068,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 160,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "< Back to home",
+      "y": 148,
+      "x": 44,
+      "height": 30,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 140,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 206,
+      "x": 34,
+      "height": 42,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.067,
+        0.068,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 160,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Hidden messages",
+      "y": 209,
+      "x": 44,
+      "height": 36,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 140,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 261,
+      "x": 34,
+      "height": 42,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.067,
+        0.068,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 160,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Your lists",
+      "y": 264,
+      "x": 44,
+      "height": 36,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 140,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 316,
+      "x": 34,
+      "height": 42,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.067,
+        0.068,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 160,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Settings",
+      "y": 319,
+      "x": 44,
+      "height": 36,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 140,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 371,
+      "x": 34,
+      "height": 42,
+      "kind": "Button",
+      "backdropColor": [
+        0.15,
+        0.105,
+        0.046,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 160,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Local test",
+      "y": 374,
+      "x": 44,
+      "height": 36,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 140,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ]
+    },
+    {
+      "y": 145,
+      "x": 218,
+      "height": 486,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 628,
+      "depth": 1
+    },
+    {
+      "wordWrap": true,
+      "text": "Understand a decision.",
+      "y": 145,
+      "x": 218,
+      "height": 20,
+      "kind": "FontString",
+      "fontSize": 20,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 628,
+      "depth": 2,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ]
+    },
+    {
+      "wordWrap": true,
+      "text": "Enter a sample message. This runs the classifier locally without sending chat or changing counters.",
+      "y": 175,
+      "x": 218,
+      "height": 34,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 628,
+      "depth": 2,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.64,
+        0.64,
+        0.61,
+        1
+      ]
+    },
+    {
+      "wordWrap": true,
+      "text": "HIDE  |  This message would be hidden.",
+      "y": 413,
+      "x": 218,
+      "height": 20,
+      "kind": "FontString",
+      "fontSize": 20,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 628,
+      "depth": 2,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ]
+    },
+    {
+      "wordWrap": true,
+      "text": "This checks content rules and the active profile. Live chat also checks sender identity, your player lists and chat scope.",
+      "y": 570,
+      "x": 218,
+      "height": 34,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 628,
+      "depth": 2,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.64,
+        0.64,
+        0.61,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 210,
+      "x": 218,
+      "height": 30,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 149.5,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Known domain",
+      "y": 213,
+      "x": 228,
+      "height": 24,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 129.5,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 210,
+      "x": 377.5,
+      "height": 30,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 149.5,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Boost sale",
+      "y": 213,
+      "x": 387.5,
+      "height": 24,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 129.5,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 210,
+      "x": 537,
+      "height": 30,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 149.5,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Ordinary trade",
+      "y": 213,
+      "x": 547,
+      "height": 24,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 129.5,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 210,
+      "x": 696.5,
+      "height": 30,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 149.5,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Group finder",
+      "y": 213,
+      "x": 706.5,
+      "height": 24,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 129.5,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 256,
+      "x": 218,
+      "height": 94,
+      "kind": "Frame",
+      "backdropColor": [
+        0.036,
+        0.035,
+        0.032,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 628,
+      "depth": 2
+    },
+    {
+      "y": 264,
+      "x": 228,
+      "height": 78,
+      "kind": "ScrollFrame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 608,
+      "depth": 3
+    },
+    {
+      "clip": [
+        228,
+        264,
+        836,
+        342
+      ],
+      "y": 264,
+      "x": 228,
+      "height": 78,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 608,
+      "depth": 4
+    },
+    {
+      "clip": [
+        228,
+        264,
+        836,
+        342
+      ],
+      "text": "mythicstore.com\nWTS Copper Bar 2g per stack\nLFM WC need healer",
+      "y": 264,
+      "x": 228,
+      "textInsets": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "height": 39.599999999999994,
+      "kind": "EditBox",
+      "fontSize": 12,
+      "justifyV": "TOP",
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 608,
+      "depth": 5,
+      "font": "Fonts\\FRIZQT__.TTF"
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 362,
+      "x": 218,
+      "height": 30,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 198,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Evaluate sample",
+      "y": 365,
+      "x": 228,
+      "height": 24,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 178,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 362,
+      "x": 430,
+      "height": 30,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 198,
+      "depth": 2
+    },
+    {
+      "wordWrap": false,
+      "text": "Run built-in checks",
+      "y": 365,
+      "x": 440,
+      "height": 24,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 178,
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 449,
+      "x": 218,
+      "height": 105,
+      "kind": "Frame",
+      "backdropColor": [
+        0.036,
+        0.035,
+        0.032,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 628,
+      "depth": 2
+    },
+    {
+      "y": 459,
+      "x": 228,
+      "height": 85,
+      "kind": "ScrollFrame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 594,
+      "depth": 3
+    },
+    {
+      "clip": [
+        228,
+        459,
+        822,
+        544
+      ],
+      "y": 459,
+      "x": 228,
+      "height": 130.39999999999998,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 594,
+      "depth": 4
+    },
+    {
+      "clip": [
+        228,
+        459,
+        822,
+        544
+      ],
+      "wordWrap": true,
+      "text": "Reason: Known seller domain\n\nRule: R001_KNOWN_HOST\n\nDetail: mythicstore.com\n\nIndicators: dom_mythicstore_com\n\nDomain: mythicstore.com | exact | transform: literal",
+      "y": 459,
+      "x": 228,
+      "height": 122.39999999999999,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 592,
+      "depth": 5,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 453,
+      "x": 825,
+      "height": 26,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 18,
+      "depth": 3
+    },
+    {
+      "wordWrap": false,
+      "text": "^",
+      "y": 456,
+      "x": 828,
+      "height": 20,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 12,
+      "depth": 4,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 524,
+      "x": 825,
+      "height": 26,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 18,
+      "depth": 3
+    },
+    {
+      "wordWrap": false,
+      "text": "v",
+      "y": 527,
+      "x": 828,
+      "height": 20,
+      "kind": "FontString",
+      "fontSize": 12,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 12,
+      "depth": 4,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "y": 632,
+      "x": 51,
+      "height": 22,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 798,
+      "depth": 1
+    }
+  ]
+}

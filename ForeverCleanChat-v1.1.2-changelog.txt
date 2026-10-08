@@ -1,0 +1,12 @@
+Forever Clean Chat v1.1.2
+
+- Replaced the protection status light with an animated padlock.
+- Enabling protection fades in an open lock over 0.5 seconds, closes the shackle, and gives a brief green glow. The closed lock stays visible while protection is enabled.
+- Disabling protection opens the shackle first, then fades the open lock out.
+- Rapid ON/OFF changes continue smoothly from the current animation position. Animations stop when finished or when the panel is hidden.
+- Includes the redesigned gold-and-dark English interface, with a smaller panel and improved text fitting throughout Home and Advanced settings.
+- Fixed the X close button and removed the footer /fcc hint. The /fcc command remains available.
+- Improved Local test with a fixed, scrollable multiline input area.
+- Existing filtering settings, personal lists, counters, and minimap preferences are preserved.
+
+Validation: the full test suite passed on Lua 5.1 and Lua 5.3, including 1,466 UI and animation checks per runtime. Automated tests use mocked WoW APIs and do not establish native client compatibility.

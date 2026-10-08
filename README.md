@@ -1,10 +1,20 @@
 # Forever Clean Chat
 
-Version **1.0.0**. An independent World of Warcraft / Forever addon that filters
+Version **1.1.2**. An independent World of Warcraft / Forever addon that filters
 commercial chat spam locally using an offline rule pack.
 
-The English control panel includes a minimap button, hidden-message log,
-personal lists, settings and local message testing. Open it with `/fcc`.
+The English control panel uses a dark textured fantasy theme with an ornate
+gold frame and a chat-shield emblem. Its home screen contains the protection
+switch, Balanced/Strict mode, the real session counter and links to hidden
+messages and Advanced settings. Open it with `/fcc`.
+
+Advanced settings contains the hidden-message log, personal lists, filtering
+preferences and local message testing.
+
+The panel is 28% smaller, with captions fitted to their controls, a scrollable
+local-test input, a graphical X close button and a clean save-feedback footer.
+The protection light is now a padlock: enabling fades in the open lock, closes
+the shackle and briefly flashes green; disabling opens it and fades it out.
 
 ## Installation
 

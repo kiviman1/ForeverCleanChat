@@ -1,16 +1,23 @@
--- Native, event-driven control panel. No libraries, remote assets or chat output.
+-- Native, event-driven control panel. Artwork is bundled; all controls remain live WoW frames.
 local _, NS = ...
 local UI = {controls={}, tab='overview', logPage=1, listPage=1, listKind='domain'}
 NS.UI = UI
 local N, PAGE = NS.Normalize, 8
 local unpack=unpack or table.unpack
-local WIDTH, HEIGHT, CONTENT = 860, 590, 650
-local C = {bg={0.025,0.040,0.047,0.98}, card={0.047,0.072,0.081,1},
-    line={0.16,0.23,0.25,1}, teal={0.40,0.85,0.76,1}, gold={0.87,0.72,0.43,1},
-    text={0.90,0.92,0.91,1}, muted={0.58,0.66,0.68,1}, red={0.96,0.44,0.40,1}}
-local tabs = {{'overview','Overview','Protection at a glance'}, {'log','Hidden messages','Review this session'},
-    {'lists','Your lists','Fine-tune your rules'}, {'settings','Settings','Choose your preferences'},
-    {'test','Local test','Try a sample safely'}}
+local CONTENT = 628
+local COLUMN, SECOND_COLUMN = 302, 326
+local MEDIA='Interface\\AddOns\\ForeverCleanChat\\Media\\'
+local SERIF='Fonts\\FRIZQT__.TTF'
+UI.media={frame=MEDIA..'Frame.tga',emblem=MEDIA..'Emblem.tga'}
+UI.maxScale=0.72
+local C = {bg={0.036,0.035,0.032,1}, card={0.065,0.062,0.053,0.98},
+    line={0.34,0.29,0.19,1}, teal={0.34,0.93,0.24,1}, gold={0.96,0.74,0.33,1},
+    text={0.96,0.91,0.77,1}, muted={0.64,0.64,0.61,1}, red={0.93,0.30,0.24,1},
+    active={0.15,0.105,0.046,1}, inactive={0.065,0.067,0.068,1}}
+UI.metrics={home={width=760,height=724,contentX=34,contentY=-138,contentWidth=692},
+    advanced={width=900,height=700,contentX=218,contentY=-145,contentWidth=CONTENT}}
+local tabs = {{'overview','Home'}, {'log','Hidden messages'}, {'lists','Your lists'},
+    {'settings','Settings'}, {'test','Local test'}}
 local kinds = {{'domain','Domains'}, {'phrase','Phrases'}, {'allow','Allowed players'},
     {'block','Blocked players'}, {'domainAllow','Exceptions'}}
 local eventLabels = {CHAT_MSG_CHANNEL='Public channels', CHAT_MSG_SAY='Say', CHAT_MSG_YELL='Yell',
@@ -39,6 +46,56 @@ end
 local function color(region, rgba)
     if region.SetTextColor then region:SetTextColor(unpack(rgba)) end
 end
+local function serif(region,pixels)
+    if region.SetFont then region:SetFont(SERIF,pixels,'') end
+    if region.fitOwner then region.fitOwner.fontSize=pixels end
+    if region.SetShadowColor then region:SetShadowColor(0,0,0,0.85); region:SetShadowOffset(1,-1) end
+    return region
+end
+local function unboundedWidth(region,text)
+    region:SetText(text)
+    if region.GetUnboundedStringWidth then return region:GetUnboundedStringWidth() end
+    local width=region:GetWidth()
+    region:SetWidth(0)
+    local measured=region:GetStringWidth()
+    region:SetWidth(width)
+    return measured
+end
+local function fitCaption(b)
+    local f=b.caption
+    if not f then return end
+    f:SetWordWrap(false)
+    if f.SetNonSpaceWrap then f:SetNonSpaceWrap(false) end
+    if f.SetMaxLines then f:SetMaxLines(1) end
+    local target=f:GetWidth()
+    local base=b.fontSize or 12
+    f:SetFont(SERIF,base,'')
+    local text=b.fullLabel or ''
+    local width=unboundedWidth(f,text)
+    if width>target and base>10 then
+        f:SetFont(SERIF,math.max(10,math.floor(base*target/width)),'')
+        width=unboundedWidth(f,text)
+    end
+    b.truncated=width>target
+    if b.truncated then
+        -- Keep UTF-8 characters and escaped literal pipes intact when shortening display text.
+        local ends,i={},1
+        while i<=#text do
+            local byte=string.byte(text,i)
+            local length=byte==124 and string.byte(text,i+1)==124 and 2
+                or byte>=240 and 4 or byte>=224 and 3 or byte>=192 and 2 or 1
+            i=i+length; ends[#ends+1]=i-1
+        end
+        local lo,hi,best=0,#ends,''
+        while lo<=hi do
+            local mid=math.floor((lo+hi)/2)
+            local candidate=string.sub(text,1,ends[mid] or 0)..'...'
+            if unboundedWidth(f,candidate)<=target then best=candidate; lo=mid+1
+            else hi=mid-1 end
+        end
+        f:SetText(best)
+    else f:SetText(text) end
+end
 local function fill(parent,x,y,w,h,rgba,layer)
     local t=parent:CreateTexture(nil,layer or 'BACKGROUND')
     t:SetPoint('TOPLEFT',parent,'TOPLEFT',x,y); size(t,w,h)
@@ -48,6 +105,8 @@ local function fill(parent,x,y,w,h,rgba,layer)
 end
 local function label(parent,text,x,y,width,font,rgba,height)
     local f=parent:CreateFontString(nil,'OVERLAY',font or 'GameFontHighlight')
+    local pixels=font=='GameFontNormalLarge' and 20 or font=='GameFontHighlight' and 14 or 12
+    f:SetFont(SERIF,pixels,'')
     f:SetPoint('TOPLEFT',parent,'TOPLEFT',x,y); f:SetWidth(width)
     f:SetJustifyH('LEFT'); if f.SetJustifyV then f:SetJustifyV('TOP') end
     if height then f:SetHeight(height) end
@@ -56,8 +115,8 @@ local function label(parent,text,x,y,width,font,rgba,height)
 end
 local function surface(frame,rgba,border)
     if frame.SetBackdrop then
-        frame:SetBackdrop({bgFile='Interface\\Buttons\\WHITE8X8',edgeFile='Interface\\Buttons\\WHITE8X8',
-            tile=false,edgeSize=1,insets={left=1,right=1,top=1,bottom=1}})
+        frame:SetBackdrop({bgFile='Interface\\Buttons\\WHITE8X8',edgeFile='Interface\\Tooltips\\UI-Tooltip-Border',
+            tile=false,edgeSize=12,insets={left=3,right=3,top=3,bottom=3}})
         if frame.SetBackdropColor then frame:SetBackdropColor(unpack(rgba or C.card)) end
         if frame.SetBackdropBorderColor then frame:SetBackdropBorderColor(unpack(border or C.line)) end
     else
@@ -70,19 +129,32 @@ local function button(parent,text,x,y,w,action,h)
     local b=make('Button',parent); size(b,w,h or 30)
     b:SetPoint('TOPLEFT',parent,'TOPLEFT',x,y); surface(b)
     local padding=w<40 and 3 or 10
-    b.caption=label(b,text,padding,-9,w-padding*2,'GameFontHighlightSmall',C.text,(h or 30)-10)
+    b.caption=label(b,text,0,0,w-padding*2,'GameFontHighlightSmall',C.text,(h or 30)-6)
+    b.fontSize=12; b.caption.fitOwner=b; b.fullLabel=text
+    b.caption:ClearAllPoints(); b.caption:SetPoint('CENTER',b,'CENTER',0,0)
+    b.caption:SetJustifyV('MIDDLE')
     b.caption:SetJustifyH('CENTER')
+    fitCaption(b)
     b:SetScript('OnClick',function(self) if not self.disabled then action(self) end end)
     b:SetScript('OnEnter',function(self)
-        if not self.disabled and self.SetBackdropBorderColor then self:SetBackdropBorderColor(unpack(C.teal)) end
+        if not self.disabled and self.SetBackdropBorderColor then self:SetBackdropBorderColor(unpack(C.gold)) end
+        if self.truncated and GameTooltip and GameTooltip.SetOwner then
+            GameTooltip:SetOwner(self,'ANCHOR_TOPRIGHT')
+            if GameTooltip.ClearLines then GameTooltip:ClearLines() end
+            GameTooltip:AddLine(self.fullLabel,C.text[1],C.text[2],C.text[3],true)
+            GameTooltip:Show()
+        end
     end)
     b:SetScript('OnLeave',function(self)
-        if self.SetBackdropBorderColor then self:SetBackdropBorderColor(unpack(self.active and C.teal or C.line)) end
+        if self.SetBackdropBorderColor then self:SetBackdropBorderColor(unpack(self.active and C.gold or C.line)) end
+        if self.truncated and GameTooltip then GameTooltip:Hide() end
     end)
-    function b:SetLabel(value) self.caption:SetText(value) end
+    function b:SetLabel(value) self.fullLabel=value; fitCaption(self) end
+    function b:FitCaption() fitCaption(self) end
     function b:SetActive(value)
-        self.active=value; color(self.caption,value and C.teal or C.text)
-        if self.SetBackdropBorderColor then self:SetBackdropBorderColor(unpack(value and C.teal or C.line)) end
+        self.active=value; color(self.caption,value and C.gold or C.text)
+        if self.SetBackdropBorderColor then self:SetBackdropBorderColor(unpack(value and C.gold or C.line)) end
+        if self.SetBackdropColor then self:SetBackdropColor(unpack(value and C.active or C.inactive)) end
     end
     function b:SetAvailable(value)
         self.disabled=not value
@@ -99,14 +171,51 @@ local function call(method,...)
         UI.SetMessage(not success and 'The setting could not be applied.' or ('Could not apply: '..safe(reason)),true)
         return false
     end
-    UI.SetMessage('Saved. Your preference is applied immediately.')
+    UI.SetMessage('Changes saved automatically')
     UI.Refresh(); return true
 end
 local function edit(parent,x,y,w,h,multiline,maxChars)
-    local box=make('EditBox',parent); size(box,w,h)
-    box:SetPoint('TOPLEFT',parent,'TOPLEFT',x,y); surface(box,C.bg)
+    local box
+    if multiline then
+        -- Native multiline EditBoxes grow to their text height. The viewport owns the fixed border.
+        local viewport=make('Frame',parent); size(viewport,w,h)
+        viewport:SetPoint('TOPLEFT',parent,'TOPLEFT',x,y); surface(viewport,C.bg)
+        local scroll=CreateFrame('ScrollFrame',nil,viewport); size(scroll,w-20,h-16)
+        scroll:SetPoint('TOPLEFT',viewport,'TOPLEFT',10,-8)
+        local content=CreateFrame('Frame',nil,scroll); size(content,w-20,h-16)
+        scroll:SetScrollChild(content)
+        box=make('EditBox',content); box:SetPoint('TOPLEFT',content,'TOPLEFT',0,0)
+        size(box,w-20,20)
+        box.viewport,box.scroll,box.content=viewport,scroll,content
+        local function range() return math.max(0,content:GetHeight()-scroll:GetHeight()) end
+        local function refresh()
+            content:SetHeight(math.max(scroll:GetHeight(),box:GetHeight()))
+            if scroll.UpdateScrollChildRect then scroll:UpdateScrollChildRect() end
+            scroll:SetVerticalScroll(math.min(scroll:GetVerticalScroll() or 0,range()))
+        end
+        box:SetScript('OnTextChanged',refresh); box:SetScript('OnSizeChanged',refresh)
+        box:SetScript('OnCursorChanged',function(_,_,cursorY,_,cursorHeight)
+            if type(cursorY)~='number' or type(cursorHeight)~='number' then return end
+            refresh()
+            local top,current=-cursorY,scroll:GetVerticalScroll() or 0
+            if top<current then scroll:SetVerticalScroll(math.max(0,math.min(range(),top)))
+            elseif top+cursorHeight>current+scroll:GetHeight() then
+                scroll:SetVerticalScroll(math.max(0,math.min(range(),top+cursorHeight-scroll:GetHeight())))
+            end
+        end)
+        scroll:EnableMouseWheel(true)
+        scroll:SetScript('OnMouseWheel',function(_,delta)
+            scroll:SetVerticalScroll(math.max(0,math.min(range(),(scroll:GetVerticalScroll() or 0)-delta*24)))
+        end)
+        viewport:EnableMouse(true); viewport:SetScript('OnMouseDown',function() box:SetFocus() end)
+    else
+        box=make('EditBox',parent); size(box,w,h)
+        box:SetPoint('TOPLEFT',parent,'TOPLEFT',x,y); surface(box,C.bg)
+    end
     box:SetAutoFocus(false); box:SetFontObject('GameFontHighlightSmall')
-    box:SetTextInsets(10,10,8,8); box:SetMaxLetters(maxChars or 160)
+    box:SetFont(SERIF,12,'')
+    if multiline then box:SetTextInsets(0,0,0,0) else box:SetTextInsets(10,10,5,5) end
+    box:SetMaxLetters(maxChars or 160)
     if box.SetMultiLine then box:SetMultiLine(multiline==true) end
     if box.SetMaxBytes then box:SetMaxBytes(multiline and 4096 or 640) end
     if multiline and box.SetJustifyV then box:SetJustifyV('TOP') end
@@ -118,7 +227,9 @@ local function check(parent,text,x,y,w,action)
     local b=button(parent,'',x,y,w,function(self) action(not self.checked) end,30)
     b.caption:SetJustifyH('LEFT'); b.caption:ClearAllPoints()
     b.caption:SetPoint('LEFT',b,'LEFT',38,0); b.caption:SetWidth(w-46); b.caption:SetText(text)
+    b.fullLabel=text; b:FitCaption()
     b.mark=label(b,'',10,-8,18,'GameFontNormal',C.teal,20)
+    b.mark:SetFont(SERIF,11,'')
     function b:SetChecked(value) self.checked=value==true; self.mark:SetText(self.checked and '[x]' or '[ ]'); self:SetActive(self.checked) end
     return b
 end
@@ -151,26 +262,78 @@ local function textScroll(parent,x,y,w,h)
 end
 function UI.SetMessage(message,isError)
     UI.message=message; UI.messageError=isError
-    if UI.footer then UI.footer:SetText(message or 'Preferences are saved automatically.'); color(UI.footer,isError and C.red or C.muted) end
+    if UI.footer then
+        local text=message or 'Changes saved automatically'
+        UI.footer:SetText(text); serif(UI.footer,#text>65 and 14 or 17)
+        color(UI.footer,isError and C.red or C.muted)
+    end
 end
 
+local function largeButton(parent,text,x,y,w,h,action,fontSize)
+    local b=button(parent,text,x,y,w,action,h)
+    b.caption:ClearAllPoints(); b.caption:SetPoint('CENTER',b,'CENTER',0,0)
+    b.caption:SetWidth(w-26); b.caption:SetHeight(h-12); b.caption:SetJustifyV('MIDDLE')
+    serif(b.caption,fontSize or 25)
+    b:FitCaption()
+    return b
+end
+local function circle(parent,x,y,diameter,rgba,layer)
+    local t=parent:CreateTexture(nil,layer or 'ARTWORK')
+    t:SetPoint('TOPLEFT',parent,'TOPLEFT',x,y); size(t,diameter,diameter)
+    t:SetTexture('Interface\\CHARACTERFRAME\\TempPortraitAlphaMask')
+    if t.SetVertexColor then t:SetVertexColor(unpack(rgba)) end
+    return t
+end
+local function card(parent,y,h)
+    local f=make('Frame',parent); f:SetPoint('TOPLEFT',parent,'TOPLEFT',0,y); size(f,692,h)
+    surface(f,C.card,C.line)
+    -- A restrained inset bevel keeps the live controls readable over the stone artwork.
+    fill(f,7,-6,678,1,{0.34,0.29,0.20,0.28},'BORDER')
+    fill(f,7,-h+7,678,1,{0,0,0,0.55},'BORDER')
+    return f
+end
 local function buildOverview(p)
-    heading(p,'A quieter adventure.','Commercial spam is hidden quietly. Review a decision or make the rules your own.')
-    p.status=label(p,'',0,-73,CONTENT,'GameFontNormalLarge',C.teal)
-    p.description=label(p,'',0,-102,CONTENT,'GameFontHighlightSmall',C.muted,34)
-    p.cards={}
-    for i,title in ipairs({'Hidden this session','Hidden all time','Saved in session log'}) do
-        local card=make('Frame',p); size(card,206,86); card:SetPoint('TOPLEFT',p,'TOPLEFT',(i-1)*222,-150); surface(card)
-        label(card,title,14,-15,180,'GameFontHighlightSmall',C.muted)
-        p.cards[i]=label(card,'0',14,-42,180,'GameFontNormalLarge',C.text)
-    end
-    label(p,'CHOOSE YOUR PROTECTION',0,-261,CONTENT,'GameFontNormalSmall',C.gold)
-    UI.controls.overviewBalanced=button(p,'Balanced',0,-286,160,function() call('SetMode','balanced') end)
-    UI.controls.overviewStrict=button(p,'Strict',174,-286,160,function() call('SetMode','strict') end)
-    label(p,'Balanced targets commercial spam. Strict also catches paid boost and carry offers. Ordinary trading and group recruitment remain welcome.',0,-330,CONTENT,'GameFontHighlightSmall',C.muted,42)
-    UI.controls.overviewToggle=button(p,'',0,-391,190,function() call('SetEnabled',not NS.db.enabled) end)
-    button(p,'Review hidden messages',204,-391,214,function() UI.Show('log') end)
-    button(p,'Try a local sample',432,-391,218,function() UI.Show('test') end)
+    local protection=card(p,0,106); p.protectionCard=protection
+    p.protectionLock=NS.CreateProtectionLock(protection,25,-17,54,68)
+    UI.controls.protectionLock=p.protectionLock
+    p.protectionLock:SetEnabled(NS.db.enabled,false)
+    p:SetScript('OnHide',function() p.protectionLock:Finish() end)
+    serif(label(protection,'Chat protection',94,-22,398,'GameFontNormalLarge',C.text,35),28)
+    p.status=serif(label(protection,'',94,-60,398,'GameFontNormalLarge',C.teal,30),24)
+    local toggle=largeButton(protection,'ON',526,-28,137,51,function() call('SetEnabled',not NS.db.enabled) end,23)
+    if toggle.SetBackdrop then toggle:SetBackdrop(nil) end
+    -- Circular ends plus a center strip form a real capsule rather than a square checkbox.
+    toggle.trackOuter={circle(toggle,0,0,51,C.teal,'BACKGROUND'),
+        fill(toggle,25,0,87,51,C.teal,'BACKGROUND'),circle(toggle,86,0,51,C.teal,'BACKGROUND')}
+    local trackDark={0.025,0.19,0.016,1}
+    toggle.trackInner={circle(toggle,3,-3,45,trackDark,'ARTWORK'),
+        fill(toggle,25,-3,87,45,trackDark,'ARTWORK'),circle(toggle,89,-3,45,trackDark,'ARTWORK')}
+    toggle.caption:SetWidth(75); toggle.caption:ClearAllPoints(); toggle.caption:SetPoint('LEFT',toggle,'LEFT',10,0)
+    toggle.thumbRim=circle(toggle,88,-4,43,{0.30,0.43,0.12,1},'OVERLAY')
+    toggle.thumb=circle(toggle,91,-7,37,{0.85,0.88,0.57,1},'OVERLAY')
+    toggle.thumbHighlight=circle(toggle,97,-10,20,{0.97,0.99,0.77,0.46},'OVERLAY')
+    local function toggleBorder() end
+    toggle:SetScript('OnEnter',toggleBorder); toggle:SetScript('OnLeave',toggleBorder)
+    UI.controls.overviewToggle=toggle; UI.controls.homeToggle=toggle
+
+    local mode=card(p,-114,178); p.modeCard=mode
+    serif(label(mode,'Filtering mode',29,-21,634,'GameFontNormalLarge',C.muted,30),24)
+    UI.controls.overviewBalanced=largeButton(mode,'Balanced',26,-60,312,54,function() call('SetMode','balanced') end,26)
+    UI.controls.overviewStrict=largeButton(mode,'Strict',354,-60,312,54,function() call('SetMode','strict') end,26)
+    UI.controls.homeBalanced=UI.controls.overviewBalanced; UI.controls.homeStrict=UI.controls.overviewStrict
+    p.modeDescription=serif(label(mode,'',29,-129,634,'GameFontHighlight',C.muted,37),21)
+
+    local statistics=card(p,-300,122); p.statisticsCard=statistics
+    serif(label(statistics,'Hidden this session',29,-21,366,'GameFontNormalLarge',C.muted,30),25)
+    p.hiddenCounter=serif(label(statistics,'0',29,-61,350,'GameFontNormalLarge',C.text,50),44)
+    p.cards={p.hiddenCounter}
+    UI.controls.homeMessages=largeButton(statistics,'View messages',398,-43,268,57,function() UI.Show('log') end,25)
+    UI.controls.homeMessages.caption:SetWidth(221); UI.controls.homeMessages.caption:ClearAllPoints(); UI.controls.homeMessages.caption:SetPoint('CENTER',UI.controls.homeMessages,'CENTER',-9,0)
+    serif(label(UI.controls.homeMessages,'>',237,-14,22,'GameFontNormalLarge',C.gold,31),28)
+    UI.controls.homeAdvanced=largeButton(p,'Advanced settings',0,-430,692,82,function() UI.Show('settings') end,27)
+    UI.controls.homeAdvanced.caption:SetJustifyH('LEFT'); UI.controls.homeAdvanced.caption:SetWidth(585)
+    UI.controls.homeAdvanced.caption:ClearAllPoints(); UI.controls.homeAdvanced.caption:SetPoint('LEFT',UI.controls.homeAdvanced,'LEFT',74,0)
+    serif(label(UI.controls.homeAdvanced,'>',34,-25,26,'GameFontNormalLarge',C.gold,36),32)
 end
 local function selectedDomain(row)
     if not row then return nil end
@@ -182,31 +345,31 @@ local function selectedDomain(row)
 end
 local function buildLog(p)
     heading(p,'Hidden messages','The latest 50 hidden messages stay here for this session. Select one to inspect the decision.')
-    UI.controls.logSearch=edit(p,0,-61,314,27,false,160)
+    UI.controls.logSearch=edit(p,0,-61,COLUMN,27,false,160)
     UI.controls.logSearch:SetScript('OnTextChanged',function() UI.logPage=1; UI.Refresh() end)
-    p.count=label(p,'',0,-92,314,'GameFontHighlightSmall',C.muted,13)
-    UI.controls.logClear=button(p,'Clear session log',462,-61,188,function() call('ClearLog'); UI.logSelected=nil; UI.Refresh() end)
+    p.count=label(p,'',0,-92,COLUMN,'GameFontHighlightSmall',C.muted,13)
+    UI.controls.logClear=button(p,'Clear session log',CONTENT-188,-61,188,function() call('ClearLog'); UI.logSelected=nil; UI.Refresh() end)
     p.rows={}; UI.controls.logRows=p.rows
     for i=1,PAGE do
-        local row=button(p,'',0,-110-(i-1)*36,314,function(self) UI.logSelected=self.entry; UI.Refresh() end,33)
-        row.caption:SetJustifyH('LEFT'); row.caption:SetWidth(294); p.rows[i]=row
+        local row=button(p,'',0,-110-(i-1)*36,COLUMN,function(self) UI.logSelected=self.entry; UI.Refresh() end,33)
+        row.caption:SetJustifyH('LEFT'); row.caption:SetWidth(COLUMN-20); p.rows[i]=row
     end
-    p.empty=label(p,'',14,-128,285,'GameFontHighlightSmall',C.muted,170)
-    p.detail=textScroll(p,330,-104,320,205)
-    UI.controls.logAllow=button(p,'Allow player',330,-322,153,function()
+    p.empty=label(p,'',14,-128,COLUMN-28,'GameFontHighlightSmall',C.muted,170)
+    p.detail=textScroll(p,SECOND_COLUMN,-104,COLUMN,205)
+    UI.controls.logAllow=button(p,'Allow player',SECOND_COLUMN,-322,144,function()
         if UI.logSelected then call('EditList','allow','add',UI.logSelected.author) end
     end)
-    UI.controls.logBlock=button(p,'Block player',497,-322,153,function()
+    UI.controls.logBlock=button(p,'Block player',SECOND_COLUMN+158,-322,144,function()
         if UI.logSelected then call('EditList','block','add',UI.logSelected.author) end
     end)
-    UI.controls.logDomainAllow=button(p,'Add domain exception',330,-361,320,function()
+    UI.controls.logDomainAllow=button(p,'Add domain exception',SECOND_COLUMN,-361,COLUMN,function()
         local host=selectedDomain(UI.logSelected)
         if host then call('EditList','domainAllow','add',host) end
     end)
-    p.domain=label(p,'',330,-407,320,'GameFontHighlightSmall',C.muted,38)
+    p.domain=label(p,'',SECOND_COLUMN,-407,COLUMN,'GameFontHighlightSmall',C.muted,38)
     UI.controls.logPrev=button(p,'< Previous',0,-409,106,function() UI.logPage=UI.logPage-1; UI.Refresh() end)
-    UI.controls.logNext=button(p,'Next >',208,-409,106,function() UI.logPage=UI.logPage+1; UI.Refresh() end)
-    p.page=label(p,'',116,-418,86,'GameFontHighlightSmall',C.muted); p.page:SetJustifyH('CENTER')
+    UI.controls.logNext=button(p,'Next >',COLUMN-106,-409,106,function() UI.logPage=UI.logPage+1; UI.Refresh() end)
+    p.page=label(p,'',116,-418,COLUMN-228,'GameFontHighlightSmall',C.muted); p.page:SetJustifyH('CENTER')
 end
 local function listEntries()
     local db,rows=NS.db,{}
@@ -237,7 +400,7 @@ end
 local function buildLists(p)
     heading(p,'Your rules, your chat.','Manage domains, phrases and players. Each personal list supports up to 100 entries.')
     UI.controls.listsKinds={}
-    local widths={105,93,147,147,118}; local x=0
+    local widths={101,89,143,143,112}; local x=0
     for i,item in ipairs(kinds) do
         local kind=item[1]
         UI.controls.listsKinds[kind]=button(p,item[2],x,-65,widths[i],function()
@@ -250,21 +413,22 @@ local function buildLists(p)
     p.rows={}; UI.controls.listRows=p.rows
     for i=1,PAGE do
         local row=button(p,'',0,-170-(i-1)*25,CONTENT,function(self) UI.listSelected=self.entry; UI.Refresh() end,23)
-        row.caption:SetJustifyH('LEFT'); row.caption:SetPoint('TOPLEFT',row,'TOPLEFT',10,-6); p.rows[i]=row
+        row.caption:SetJustifyH('LEFT'); row.caption:ClearAllPoints()
+        row.caption:SetPoint('LEFT',row,'LEFT',10,0); p.rows[i]=row
     end
     p.empty=label(p,'',14,-188,CONTENT-28,'GameFontHighlightSmall',C.muted,130)
     UI.controls.listPrev=button(p,'< Previous',0,-393,106,function() UI.listPage=UI.listPage-1; UI.Refresh() end,26)
     UI.controls.listNext=button(p,'Next >',208,-393,106,function() UI.listPage=UI.listPage+1; UI.Refresh() end,26)
     p.page=label(p,'',116,-401,86,'GameFontHighlightSmall',C.muted); p.page:SetJustifyH('CENTER')
-    UI.controls.listRemove=button(p,'Remove selected',434,-393,216,function()
+    UI.controls.listRemove=button(p,'Remove selected',CONTENT-216,-393,216,function()
         local selected=UI.listSelected; if not selected then return end
         local ok
         if UI.listKind=='domain' and selected.builtin then ok=call('SetDomainEnabled',selected.key,selected.disabled)
         else ok=call('EditList',UI.listKind,'remove',selected.key) end
         if ok then UI.listSelected=nil; UI.Refresh() end
     end,26)
-    UI.controls.listInput=edit(p,0,-431,520,30,false,160)
-    UI.controls.listAdd=button(p,'Add entry',534,-431,116,function()
+    UI.controls.listInput=edit(p,0,-431,CONTENT-130,30,false,160)
+    UI.controls.listAdd=button(p,'Add entry',CONTENT-116,-431,116,function()
         if call('EditList',UI.listKind,'add',UI.controls.listInput:GetText()) then
             UI.controls.listInput:SetText(''); UI.controls.listInput:ClearFocus(); UI.listSelected=nil; UI.Refresh()
         end
@@ -274,27 +438,27 @@ end
 local function buildSettings(p)
     heading(p,'Protection settings','Changes apply immediately and are saved between sessions.')
     UI.controls.enabled=check(p,'Enable chat protection',0,-63,CONTENT,function(value) call('SetEnabled',value) end)
-    label(p,'PROFILE',0,-111,304,'GameFontNormalSmall',C.gold)
-    UI.controls.balanced=button(p,'Balanced',0,-134,150,function() call('SetMode','balanced') end)
-    UI.controls.strict=button(p,'Strict',164,-134,150,function() call('SetMode','strict') end)
-    label(p,'Balanced targets commercial advertising. Strict adds paid boost and carry sales.',0,-178,314,'GameFontHighlightSmall',C.muted,41)
-    label(p,'KNOWN DOMAIN MENTIONS',336,-111,314,'GameFontNormalSmall',C.gold)
-    UI.controls.hideAll=button(p,'Hide all',336,-134,150,function() call('SetDomainPolicy','hide_all') end)
-    UI.controls.contextual=button(p,'With sales context',500,-134,150,function() call('SetDomainPolicy','contextual') end)
-    label(p,'Hide all catches every known seller domain. Sales context allows neutral mentions.',336,-178,314,'GameFontHighlightSmall',C.muted,41)
-    label(p,'FILTER THESE CHAT TYPES',0,-235,314,'GameFontNormalSmall',C.gold)
+    label(p,'PROFILE',0,-111,COLUMN,'GameFontNormalSmall',C.gold)
+    UI.controls.balanced=button(p,'Balanced',0,-134,144,function() call('SetMode','balanced') end)
+    UI.controls.strict=button(p,'Strict',158,-134,144,function() call('SetMode','strict') end)
+    label(p,'Balanced targets commercial advertising. Strict adds paid boost and carry sales.',0,-178,COLUMN,'GameFontHighlightSmall',C.muted,41)
+    label(p,'KNOWN DOMAIN MENTIONS',SECOND_COLUMN,-111,COLUMN,'GameFontNormalSmall',C.gold)
+    UI.controls.hideAll=button(p,'Hide all',SECOND_COLUMN,-134,144,function() call('SetDomainPolicy','hide_all') end)
+    UI.controls.contextual=button(p,'With sales context',SECOND_COLUMN+158,-134,144,function() call('SetDomainPolicy','contextual') end)
+    label(p,'Hide all catches every known seller domain. Sales context allows neutral mentions.',SECOND_COLUMN,-178,COLUMN,'GameFontHighlightSmall',C.muted,41)
+    label(p,'FILTER THESE CHAT TYPES',0,-235,COLUMN,'GameFontNormalSmall',C.gold)
     UI.controls.events={}
     for i,event in ipairs(NS.Events) do
         local key=event
-        UI.controls.events[key]=check(p,eventLabels[key] or safe(key),0,-258-(i-1)*34,314,function(value) call('SetChatEvent',key,value) end)
+        UI.controls.events[key]=check(p,eventLabels[key] or safe(key),0,-258-(i-1)*34,COLUMN,function(value) call('SetChatEvent',key,value) end)
     end
-    label(p,'ACCESS & WINDOW',336,-235,314,'GameFontNormalSmall',C.gold)
-    UI.controls.minimap=check(p,'Show minimap button',336,-258,314,function(value) call('SetMinimapShown',value) end)
-    UI.controls.resetWindow=button(p,'Center window',336,-300,314,function()
+    label(p,'ACCESS & WINDOW',SECOND_COLUMN,-235,COLUMN,'GameFontNormalSmall',C.gold)
+    UI.controls.minimap=check(p,'Show minimap button',SECOND_COLUMN,-258,COLUMN,function(value) call('SetMinimapShown',value) end)
+    UI.controls.resetWindow=button(p,'Center window',SECOND_COLUMN,-300,COLUMN,function()
         if call('ResetWindow') then UI.ApplyWindowPosition() end
     end)
-    label(p,'Minimap: left-click opens this panel.\nRight-click opens Settings. Drag to move.',336,-342,314,'GameFontHighlightSmall',C.muted,44)
-    p.diagnostics=label(p,'',336,-391,314,'GameFontHighlightSmall',C.muted,62)
+    label(p,'Minimap: left-click opens this panel.\nRight-click opens Settings. Drag to move.',SECOND_COLUMN,-342,COLUMN,'GameFontHighlightSmall',C.muted,44)
+    p.diagnostics=label(p,'',SECOND_COLUMN,-391,COLUMN,'GameFontHighlightSmall',C.muted,62)
 end
 local samples = {{'Known domain','mythicstore.com'}, {'Boost sale','WTS RFC boosts 5g/run'},
     {'Ordinary trade','WTS Copper Bar 2g per stack'}, {'Group finder','LFM WC need healer'}}
@@ -309,12 +473,12 @@ function UI.RunLocalTest()
 end
 local function buildTest(p)
     heading(p,'Understand a decision.','Enter a sample message. This runs the classifier locally without sending chat or changing counters.')
-    UI.controls.testSamples={}; local x=0
+    UI.controls.testSamples={}; local x=0; local sampleWidth=(CONTENT-30)/4
     for i,item in ipairs(samples) do
         local sample=item[2]
-        UI.controls.testSamples[i]=button(p,item[1],x,-65,155,function()
+        UI.controls.testSamples[i]=button(p,item[1],x,-65,sampleWidth,function()
             UI.controls.testInput:SetText(sample); UI.controls.testInput:ClearFocus(); UI.RunLocalTest()
-        end); x=x+165
+        end); x=x+sampleWidth+10
     end
     UI.controls.testInput=edit(p,0,-111,CONTENT,94,true,4096)
     UI.controls.testRun=button(p,'Evaluate sample',0,-217,198,function() UI.controls.testInput:ClearFocus(); UI.RunLocalTest() end)
@@ -345,38 +509,104 @@ local function scaleWindow()
     if not UI.frame or not UIParent then return end
     local w,h=UIParent:GetWidth(),UIParent:GetHeight()
     if type(w)=='number' and type(h)=='number' and w>0 and h>0 and UI.frame.SetScale then
-        UI.frame:SetScale(math.min(1,(w-24)/WIDTH,(h-24)/HEIGHT))
+        UI.frame:SetScale(math.min(UI.maxScale,(w-32)/UI.frame:GetWidth(),(h-32)/UI.frame:GetHeight()))
     end
+end
+local function applyLayout()
+    local home=UI.tab=='overview'
+    local dimensions=home and UI.metrics.home or UI.metrics.advanced
+    if UI.viewMode~=(home and 'home' or 'advanced') then
+        size(UI.frame,dimensions.width,dimensions.height)
+        UI.viewMode=home and 'home' or 'advanced'
+        UI.title:ClearAllPoints(); UI.title:SetPoint('TOPLEFT',UI.frame,'TOPLEFT',156,home and -57 or -53)
+        UI.title:SetWidth(dimensions.width-216); serif(UI.title,home and 40 or 36)
+        UI.controls.close:ClearAllPoints(); UI.controls.close:SetPoint('TOPRIGHT',UI.frame,'TOPRIGHT',-29,-29)
+        UI.dragBar:SetWidth(dimensions.width-100)
+        UI.footer:ClearAllPoints(); UI.footer:SetPoint('TOPLEFT',UI.frame,'TOPLEFT',51,-dimensions.height+68)
+        UI.footer:SetWidth(dimensions.width-102)
+        UI.feedbackFrame:ClearAllPoints(); UI.feedbackFrame:SetPoint('TOPLEFT',UI.frame,'TOPLEFT',51,-dimensions.height+68)
+        UI.feedbackFrame:SetWidth(dimensions.width-102)
+    end
+    if home then UI.sidebar:Hide(); UI.subtitle:Hide() else UI.sidebar:Show(); UI.subtitle:Show() end
+    scaleWindow()
 end
 local function build()
     local f=make('Frame',UIParent,'ForeverCleanChatPanel'); UI.frame=f
-    size(f,WIDTH,HEIGHT); f:SetFrameStrata('DIALOG'); f:SetMovable(true); f:SetClampedToScreen(true); f:EnableMouse(true)
-    surface(f,C.bg,C.line); f:Hide(); scaleWindow(); UI.ApplyWindowPosition()
-    local top=CreateFrame('Frame',nil,f); size(top,WIDTH-80,73); top:SetPoint('TOPLEFT',f,'TOPLEFT',1,-1)
+    size(f,UI.metrics.home.width,UI.metrics.home.height); f:SetFrameStrata('DIALOG'); f:SetMovable(true); f:SetClampedToScreen(true); f:EnableMouse(true)
+    f:Hide(); scaleWindow(); UI.ApplyWindowPosition()
+    -- Keep transparent corners transparent; the bundled border owns the outer silhouette.
+    local base=f:CreateTexture(nil,'BACKGROUND'); base:SetPoint('TOPLEFT',f,'TOPLEFT',24,-24); base:SetPoint('BOTTOMRIGHT',f,'BOTTOMRIGHT',-24,24)
+    if base.SetColorTexture then base:SetColorTexture(unpack(C.bg)) else base:SetTexture('Interface\\Buttons\\WHITE8X8'); base:SetVertexColor(unpack(C.bg)) end
+    local art=f:CreateTexture(nil,'BACKGROUND'); art:SetAllPoints(f); art:SetTexture(UI.media.frame)
+    if art.SetDrawLayer then art:SetDrawLayer('BACKGROUND',1) end
+    UI.frameArtwork=art
+    local top=CreateFrame('Frame',nil,f); UI.dragBar=top; size(top,UI.metrics.home.width-100,126); top:SetPoint('TOPLEFT',f,'TOPLEFT',24,-18)
     top:EnableMouse(true); top:RegisterForDrag('LeftButton')
     top:SetScript('OnDragStart',function() f:StartMoving() end); top:SetScript('OnDragStop',saveWindow)
-    f:SetScript('OnHide',saveWindow)
-    fill(f,1,-1,WIDTH-2,72,C.card)
-    fill(f,1,-73,WIDTH-2,1,C.line); fill(f,1,-74,157,HEIGHT-108,C.card)
-    fill(f,158,-74,1,HEIGHT-108,C.line); fill(f,1,-HEIGHT+34,WIDTH-2,1,C.line)
-    local icon=f:CreateTexture(nil,'ARTWORK'); size(icon,42,42); icon:SetPoint('TOPLEFT',f,'TOPLEFT',18,-15)
-    icon:SetTexture('Interface\\Icons\\INV_Shield_05'); if icon.SetTexCoord then icon:SetTexCoord(0.07,0.93,0.07,0.93) end
-    label(f,'FOREVER CLEAN CHAT',74,-18,WIDTH-180,'GameFontNormalLarge',C.gold)
-    UI.subtitle=label(f,'',74,-46,WIDTH-180,'GameFontHighlightSmall',C.muted)
-    UI.controls.close=button(f,'x',WIDTH-48,-17,30,function() UI.Hide() end)
+    f:SetScript('OnHide',function()
+        if UI.controls.protectionLock then UI.controls.protectionLock:Finish() end
+        saveWindow()
+    end)
+    f:SetScript('OnEvent',function() if f:IsShown() then scaleWindow() end end)
+    if f.RegisterEvent then
+        pcall(f.RegisterEvent,f,'DISPLAY_SIZE_CHANGED'); pcall(f.RegisterEvent,f,'UI_SCALE_CHANGED')
+    end
+    local icon=f:CreateTexture(nil,'ARTWORK'); UI.emblem=icon; size(icon,104,104); icon:SetPoint('TOPLEFT',f,'TOPLEFT',41,-28)
+    icon:SetTexture(UI.media.emblem)
+    UI.title=serif(label(f,'Forever Clean Chat',156,-57,544,'GameFontNormalLarge',C.gold,51),40)
+    UI.subtitle=label(f,'',160,-101,610,'GameFontHighlightSmall',C.muted,22)
+    local close=make('Button',f); size(close,34,34); surface(close); UI.controls.close=close
+    if close.SetBackdropColor then close:SetBackdropColor(0.27,0.025,0.012,1); close:SetBackdropBorderColor(unpack(C.gold)) end
+    close.strokes={}
+    -- Draw the X with geometry so font width and ellipsis cannot replace the close symbol.
+    if close.CreateLine then
+        for _,direction in ipairs({-1,1}) do
+            local stroke=close:CreateLine(nil,'OVERLAY')
+            stroke:SetStartPoint('CENTER',close,-7,direction*7)
+            stroke:SetEndPoint('CENTER',close,7,-direction*7)
+            stroke:SetThickness(2)
+            stroke:SetTexture('Interface\\Buttons\\WHITE8X8'); stroke:SetVertexColor(unpack(C.gold))
+            close.strokes[#close.strokes+1]=stroke
+        end
+    else
+        local glyph=close:CreateTexture(nil,'OVERLAY')
+        glyph:SetPoint('CENTER',close,'CENTER',0,0); size(glyph,30,30)
+        glyph:SetTexture('Interface\\Buttons\\UI-Panel-MinimizeButton-Up')
+        glyph:SetVertexColor(unpack(C.gold)); close.closeGlyph=glyph
+    end
+    close:SetScript('OnClick',function() UI.Hide() end)
+    close:SetScript('OnEnter',function(self) if self.SetBackdropBorderColor then self:SetBackdropBorderColor(1,0.9,0.5,1) end end)
+    close:SetScript('OnLeave',function(self) if self.SetBackdropBorderColor then self:SetBackdropBorderColor(unpack(C.gold)) end end)
     UI.panels={}; UI.controls.tabs={}
+    local sidebar=CreateFrame('Frame',nil,f); UI.sidebar=sidebar; size(sidebar,160,440); sidebar:SetPoint('TOPLEFT',f,'TOPLEFT',34,-145)
+    UI.controls.backHome=button(sidebar,'< Back to home',0,0,160,function() UI.Show('overview') end,36)
+    UI.controls.tabs.overview=UI.controls.backHome
     local builders={overview=buildOverview,log=buildLog,lists=buildLists,settings=buildSettings,test=buildTest}
     for i,item in ipairs(tabs) do
         local key=item[1]
-        local b=button(f,item[2],12,-99-(i-1)*67,133,function() UI.Show(key) end,35)
-        UI.controls.tabs[key]=b
-        label(f,item[3],23,-137-(i-1)*67,124,'GameFontHighlightSmall',C.muted,22)
-        local p=CreateFrame('Frame',nil,f); p:SetPoint('TOPLEFT',f,'TOPLEFT',183,-94); size(p,CONTENT,486)
+        if key~='overview' then
+            UI.controls.tabs[key]=button(sidebar,item[2],0,-61-(i-2)*55,160,function() UI.Show(key) end,42)
+        end
+        local p=CreateFrame('Frame',nil,f)
+        if key=='overview' then p:SetPoint('TOPLEFT',f,'TOPLEFT',34,-138); size(p,692,512)
+        else p:SetPoint('TOPLEFT',f,'TOPLEFT',218,-145); size(p,CONTENT,486) end
         builders[key](p); UI.panels[key]=p; p:Hide()
     end
-    label(f,'OFFLINE RULE PACK',23,-471,124,'GameFontNormalSmall',C.gold,25)
-    label(f,'Quiet by design.\nMade for Forever.',23,-501,124,'GameFontHighlightSmall',C.muted,40)
-    UI.footer=label(f,UI.message or 'Preferences are saved automatically.',18,-HEIGHT+22,WIDTH-36,'GameFontHighlightSmall',C.muted,18)
+    label(sidebar,'OFFLINE PROTECTION',7,-312,150,'GameFontNormalSmall',C.gold,31)
+    label(sidebar,'Your rules and preferences stay on this computer.',7,-346,150,'GameFontHighlightSmall',C.muted,56)
+    UI.footer=serif(label(f,UI.message or 'Changes saved automatically',51,-656,658,'GameFontHighlightSmall',C.muted,22),17)
+    UI.footer:SetJustifyH('RIGHT')
+    if UI.footer.SetMaxLines then UI.footer:SetMaxLines(1) end
+    UI.feedbackFrame=CreateFrame('Frame',nil,f); size(UI.feedbackFrame,658,22); UI.feedbackFrame:EnableMouse(true)
+    UI.feedbackFrame:SetScript('OnEnter',function(self)
+        if not UI.message or not GameTooltip or not GameTooltip.SetOwner then return end
+        GameTooltip:SetOwner(self,'ANCHOR_TOPRIGHT')
+        if GameTooltip.ClearLines then GameTooltip:ClearLines() end
+        GameTooltip:AddLine('Forever Clean Chat',C.gold[1],C.gold[2],C.gold[3])
+        GameTooltip:AddLine(UI.message,0.90,0.87,0.78,true); GameTooltip:Show()
+    end)
+    UI.feedbackFrame:SetScript('OnLeave',function() if GameTooltip then GameTooltip:Hide() end end)
+    UI.viewMode=nil; applyLayout()
     if type(UISpecialFrames)=='table' then
         local present=false; for _,name in ipairs(UISpecialFrames) do if name=='ForeverCleanChatPanel' then present=true end end
         if not present then UISpecialFrames[#UISpecialFrames+1]='ForeverCleanChatPanel' end
@@ -384,11 +614,27 @@ local function build()
 end
 local function refreshOverview(p)
     local db=NS.db
-    p.status:SetText(db.enabled and 'Protection is active' or 'Protection is paused'); color(p.status,db.enabled and C.teal or C.gold)
-    p.description:SetText(db.enabled and 'Hidden messages stay in your session log. The sender receives no notification.' or 'New messages are shown normally. Your rules and saved preferences are ready when you resume.')
-    p.cards[1]:SetText(safe(NS.sessionBlocked or 0)); p.cards[2]:SetText(safe(db.totalBlocked or 0)); p.cards[3]:SetText(safe(#(NS.log or {})))
+    p.status:SetText(db.enabled and 'Active' or 'Paused'); color(p.status,db.enabled and C.teal or C.red)
+    p.protectionLock:SetEnabled(db.enabled,true)
+    p.hiddenCounter:SetText(safe(NS.sessionBlocked or 0))
+    p.modeDescription:SetText(db.mode=='strict' and 'Also filters paid boost and carry offers.' or 'Filters seller advertising and real-money service offers.')
     UI.controls.overviewBalanced:SetActive(db.mode=='balanced'); UI.controls.overviewStrict:SetActive(db.mode=='strict')
-    UI.controls.overviewToggle:SetLabel(db.enabled and 'Pause protection' or 'Resume protection')
+    local toggle=UI.controls.overviewToggle
+    toggle:SetLabel(db.enabled and 'ON' or 'OFF')
+    local trackColor=db.enabled and C.teal or C.red
+    for _,t in ipairs(toggle.trackOuter) do
+        if t==toggle.trackOuter[2] and t.SetColorTexture then t:SetColorTexture(unpack(trackColor))
+        elseif t.SetVertexColor then t:SetVertexColor(unpack(trackColor)) end
+    end
+    local innerColor=db.enabled and {0.025,0.19,0.016,1} or {0.22,0.030,0.018,1}
+    for _,t in ipairs(toggle.trackInner) do
+        if t==toggle.trackInner[2] and t.SetColorTexture then t:SetColorTexture(unpack(innerColor))
+        elseif t.SetVertexColor then t:SetVertexColor(unpack(innerColor)) end
+    end
+    toggle.caption:ClearAllPoints(); toggle.caption:SetPoint(db.enabled and 'LEFT' or 'RIGHT',toggle,db.enabled and 'LEFT' or 'RIGHT',db.enabled and 7 or -7,0)
+    toggle.thumbRim:ClearAllPoints(); toggle.thumbRim:SetPoint('TOPLEFT',toggle,'TOPLEFT',db.enabled and 88 or 6,-4)
+    toggle.thumb:ClearAllPoints(); toggle.thumb:SetPoint('TOPLEFT',toggle,'TOPLEFT',db.enabled and 91 or 9,-7)
+    toggle.thumbHighlight:ClearAllPoints(); toggle.thumbHighlight:SetPoint('TOPLEFT',toggle,'TOPLEFT',db.enabled and 97 or 15,-10)
 end
 local function refreshLog(p)
     local all=NS.log or {}; local log={}
@@ -477,9 +723,15 @@ local function refreshTest(p)
     p.details:SetBody(table.concat(parts,'\n\n'))
 end
 function UI.Refresh()
-    if not UI.frame or not UI.frame:IsShown() or not NS.db then return end
+    if not UI.frame or not NS.db then return end
+    if not UI.frame:IsShown() then
+        if UI.controls.protectionLock then UI.controls.protectionLock:SetEnabled(NS.db.enabled,false) end
+        return
+    end
+    applyLayout()
     UI.subtitle:SetText('v'..safe(NS.VERSION)..'  |  '..safe(NS.Data.dataset_version)..' offline rules')
     for key,p in pairs(UI.panels) do if key==UI.tab then p:Show() else p:Hide() end; UI.controls.tabs[key]:SetActive(key==UI.tab) end
+    if UI.tab~='overview' then UI.controls.protectionLock:SetEnabled(NS.db.enabled,false) end
     local refreshers={overview=refreshOverview,log=refreshLog,lists=refreshLists,settings=refreshSettings,test=refreshTest}
     refreshers[UI.tab](UI.panels[UI.tab]); UI.SetMessage(UI.message,UI.messageError)
 end
@@ -503,6 +755,7 @@ function UI.Show(tab)
             -- WoW frames cannot be deleted. Hide a partial build and permit a fresh attempt.
             if UI.frame and UI.frame.Hide then pcall(UI.frame.Hide,UI.frame) end
             UI.frame,UI.panels,UI.footer,UI.subtitle=nil,nil,nil,nil
+            UI.viewMode,UI.sidebar,UI.title,UI.emblem,UI.dragBar,UI.feedbackFrame=nil,nil,nil,nil,nil,nil
             UI.controls={}; UI.lastError=tostring(err); NS.uiErrors=(NS.uiErrors or 0)+1
             UI.SetMessage('The control panel could not open. Try /reload, then /fcc.',true)
             if NS.Print then NS.Print('The control panel could not open. Try /reload, then /fcc. Diagnostics: /fcc status.') end
@@ -511,6 +764,7 @@ function UI.Show(tab)
     end
     if tab=='localtest' then tab='test' elseif tab=='history' then tab='log' elseif tab=='home' then tab='overview' end
     if tab and UI.panels[tab] then UI.tab=tab end
+    if not UI.frame:IsShown() then UI.controls.protectionLock:SetEnabled(NS.db.enabled,false) end
     scaleWindow(); UI.frame:Show(); UI.Refresh(); return true
 end
 function UI.Hide()

@@ -1,4 +1,4 @@
-# Forever Clean Chat 1.0.0
+# Forever Clean Chat 1.1.2
 
 Independent, offline local chat filter. Full Turkish installation, upgrade and
 policy documentation: **README_TR.md**. Forever Mini Reminder is untouched.
@@ -8,9 +8,19 @@ been validated; registration success is not proof of actual event support.
 
 Install `ForeverCleanChat` under the correct client's `Interface/AddOns`.
 Restart, enable the addon, then click the shield beside the minimap or run `/fcc`.
-The English control panel has five sections:
+The English home screen follows the supplied fantasy-interface reference:
+dark leather, an ornate gold frame, a chat-shield emblem and gold serif text.
+It shows the protection switch, Balanced/Strict mode, the real session count,
+**View messages** and **Advanced settings**. The home screen has no sidebar.
+The padlock replaces the status light. Turning protection on fades in an open
+lock over 0.5 seconds, lowers the shackle and briefly flashes green. The closed
+lock remains visible while protection is enabled. Turning protection off raises
+the shackle, then fades the open lock out. Opening the panel shows the current
+state immediately; animations only run for a visible state change.
 
-- **Overview:** protection switch, session and lifetime totals, profile, pack and API status.
+Advanced settings opens the full controls, with a Home button to return:
+
+- **Home:** protection switch, profile and session total.
 - **Hidden messages:** the last 50 hidden messages, rule details, search, player actions and log clearing.
 - **Your lists:** manage custom domains, phrases, allowed/blocked players and domain exceptions.
 - **Settings:** choose Balanced/Strict, domain policy, chat channels and minimap visibility.
@@ -19,6 +29,15 @@ The English control panel has five sections:
 Left-click the minimap shield to toggle the panel; right-click for Settings.
 Drag the shield to move it. Drag the panel header to move the window. Positions
 are saved; Escape closes the panel. `/fcc minimap reset` restores a hidden icon.
+The panel is 28% smaller than 1.1.0 and scales down further on smaller screens.
+Home is about 547 × 521 UI units; advanced pages are 648 × 504 before any further
+screen fitting. Button captions use explicit fonts and fit their available space;
+long entries show the full text on hover. The local-test editor has a fixed,
+scrollable input area. The close button has a graphical X, and the footer only
+shows save feedback. `/fcc` still opens the panel.
+Artwork is bundled as local RGBA TGA
+textures; there is no remote asset loading. Artwork provenance and generation
+prompts are recorded in `Media/ASSETS.md` in the source repository.
 Run `/fcc test`, `/fcc status`, `/fcc pack` for text diagnostics.
 New installs use **strict**; existing enabled/mode/lists/counters are preserved.
 The built-in pack and user domain additions, removals and exceptions are separate.
@@ -67,7 +86,9 @@ false positives and evasion remain possible.
 Only channel/say/yell/incoming character whisper/player emote standard chat
 filters are registered. Each can be turned off in Settings. Bubbles, old history, mail, invitations, group finder,
 guild/party/raid/system/BN and custom third-party panels are outside this scope.
-Caches and dedupe buffers are bounded at 256, session log at 50. No polling.
+Caches and dedupe buffers are bounded at 256, session log at 50. There is no idle
+polling. The lock briefly uses an elapsed-time animation callback during a
+transition and removes it on completion or when the panel is hidden.
 Settings and UI preferences persist account-wide; raw session logs do not.
 Clearing the session log leaves session/lifetime counters unchanged.
 

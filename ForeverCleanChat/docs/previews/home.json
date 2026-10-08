@@ -1,0 +1,2944 @@
+{
+  "source": "Actual production Lua frame tree on stateful native-frame doubles",
+  "limitations": [
+    "Not a WoW screenshot",
+    "Local serif font substitutes for Blizzard Friz Quadrata",
+    "Tooltip borders and portrait-mask circles approximated by Pillow"
+  ],
+  "tab": "overview",
+  "mode": "strict",
+  "enabled": true,
+  "hidden_this_session": 12,
+  "width": 760,
+  "height": 724,
+  "production_scale": 0.72,
+  "regions": [
+    {
+      "y": 0,
+      "x": 0,
+      "name": "ForeverCleanChatPanel",
+      "height": 724,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 760,
+      "depth": 0
+    },
+    {
+      "colorTexture": [
+        0.036,
+        0.035,
+        0.032,
+        1
+      ],
+      "y": 24,
+      "x": 24,
+      "height": 676,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "BACKGROUND",
+      "alpha": 1,
+      "width": 712,
+      "depth": 1
+    },
+    {
+      "y": 0,
+      "x": 0,
+      "height": 724,
+      "kind": "Texture",
+      "fontSize": 12,
+      "texture": "Interface\\AddOns\\ForeverCleanChat\\Media\\Frame.tga",
+      "layer": "BACKGROUND",
+      "alpha": 1,
+      "width": 760,
+      "depth": 1
+    },
+    {
+      "y": 28,
+      "x": 41,
+      "height": 104,
+      "kind": "Texture",
+      "fontSize": 12,
+      "texture": "Interface\\AddOns\\ForeverCleanChat\\Media\\Emblem.tga",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 104,
+      "depth": 1
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "Forever Clean Chat",
+      "y": 57,
+      "x": 156,
+      "height": 51,
+      "kind": "FontString",
+      "fontSize": 40,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 544,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 1,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ]
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "Changes saved automatically",
+      "y": 656,
+      "x": 51,
+      "height": 22,
+      "kind": "FontString",
+      "fontSize": 17,
+      "justifyV": "TOP",
+      "justifyH": "RIGHT",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 658,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 1,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.64,
+        0.64,
+        0.61,
+        1
+      ]
+    },
+    {
+      "y": 18,
+      "x": 24,
+      "height": 126,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 660,
+      "depth": 1
+    },
+    {
+      "backdropBorderColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 29,
+      "x": 697,
+      "height": 34,
+      "kind": "Button",
+      "backdropColor": [
+        0.27,
+        0.025,
+        0.012,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 34,
+      "depth": 1
+    },
+    {
+      "lineEnd": [
+        721,
+        39
+      ],
+      "y": 29,
+      "x": 697,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        707,
+        53
+      ],
+      "vertexColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 2,
+      "depth": 2
+    },
+    {
+      "lineEnd": [
+        721,
+        53
+      ],
+      "y": 29,
+      "x": 697,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        707,
+        39
+      ],
+      "vertexColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 2,
+      "depth": 2
+    },
+    {
+      "y": 138,
+      "x": 34,
+      "height": 512,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 692,
+      "depth": 1
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 138,
+      "x": 34,
+      "height": 106,
+      "kind": "Frame",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 692,
+      "depth": 2
+    },
+    {
+      "colorTexture": [
+        0.34,
+        0.29,
+        0.2,
+        0.28
+      ],
+      "y": 144,
+      "x": 41,
+      "height": 1,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "BORDER",
+      "alpha": 1,
+      "width": 678,
+      "depth": 3
+    },
+    {
+      "colorTexture": [
+        0,
+        0,
+        0,
+        0.55
+      ],
+      "y": 237,
+      "x": 41,
+      "height": 1,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "BORDER",
+      "alpha": 1,
+      "width": 678,
+      "depth": 3
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "Chat protection",
+      "y": 160,
+      "x": 128,
+      "height": 35,
+      "kind": "FontString",
+      "fontSize": 28,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 398,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "Active",
+      "y": 198,
+      "x": 128,
+      "height": 30,
+      "kind": "FontString",
+      "fontSize": 24,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 398,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.34,
+        0.93,
+        0.24,
+        1
+      ]
+    },
+    {
+      "y": 155,
+      "x": 59,
+      "height": 68,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 54,
+      "depth": 3
+    },
+    {
+      "y": 183,
+      "x": 73.85,
+      "height": 12,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 3.085714285714286,
+      "depth": 4
+    },
+    {
+      "y": 183,
+      "x": 74.62142857142857,
+      "height": 12,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 1.542857142857143,
+      "depth": 4
+    },
+    {
+      "y": 155,
+      "x": 59,
+      "height": 68,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 54,
+      "depth": 4
+    },
+    {
+      "lineEnd": [
+        75.39285714285714,
+        173
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        75.39285714285714,
+        194
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        75.7542867711481,
+        170.15299050387227
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        75.39285714285714,
+        173
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        76.81394482414363,
+        167.5
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        75.7542867711481,
+        170.15299050387227
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        78.49961735669984,
+        165.22182540694797
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        76.81394482414363,
+        167.5
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        80.69642857142857,
+        163.47372055837118
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        78.49961735669984,
+        165.22182540694797
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        83.25466941444827,
+        162.37481591082025
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        80.69642857142857,
+        163.47372055837118
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        86,
+        162
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        83.25466941444827,
+        162.37481591082025
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        88.74533058555174,
+        162.37481591082025
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        86,
+        162
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        91.30357142857143,
+        163.47372055837118
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        88.74533058555174,
+        162.37481591082025
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        93.50038264330016,
+        165.22182540694797
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        91.30357142857143,
+        163.47372055837118
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        95.18605517585638,
+        167.5
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        93.50038264330016,
+        165.22182540694797
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        96.24571322885191,
+        170.15299050387227
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        95.18605517585638,
+        167.5
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        96.60714285714286,
+        173
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        96.24571322885191,
+        170.15299050387227
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        96.60714285714286,
+        194
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        96.60714285714286,
+        173
+      ],
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 6.75,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        75.39285714285714,
+        173
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        75.39285714285714,
+        194
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        75.7542867711481,
+        170.15299050387227
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        75.39285714285714,
+        173
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        76.81394482414363,
+        167.5
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        75.7542867711481,
+        170.15299050387227
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        78.49961735669984,
+        165.22182540694797
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        76.81394482414363,
+        167.5
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        80.69642857142857,
+        163.47372055837118
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        78.49961735669984,
+        165.22182540694797
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        83.25466941444827,
+        162.37481591082025
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        80.69642857142857,
+        163.47372055837118
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        86,
+        162
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        83.25466941444827,
+        162.37481591082025
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        88.74533058555174,
+        162.37481591082025
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        86,
+        162
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        91.30357142857143,
+        163.47372055837118
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        88.74533058555174,
+        162.37481591082025
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        93.50038264330016,
+        165.22182540694797
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        91.30357142857143,
+        163.47372055837118
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        95.18605517585638,
+        167.5
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        93.50038264330016,
+        165.22182540694797
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        96.24571322885191,
+        170.15299050387227
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        95.18605517585638,
+        167.5
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        96.60714285714286,
+        173
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        96.24571322885191,
+        170.15299050387227
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        96.60714285714286,
+        194
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        96.60714285714286,
+        173
+      ],
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 4.5321428571428575,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        75.39285714285714,
+        173
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        75.39285714285714,
+        194
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        75.7542867711481,
+        170.15299050387227
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        75.39285714285714,
+        173
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        76.81394482414363,
+        167.5
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        75.7542867711481,
+        170.15299050387227
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        78.49961735669984,
+        165.22182540694797
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        76.81394482414363,
+        167.5
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        80.69642857142857,
+        163.47372055837118
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        78.49961735669984,
+        165.22182540694797
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        83.25466941444827,
+        162.37481591082025
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        80.69642857142857,
+        163.47372055837118
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        86,
+        162
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        83.25466941444827,
+        162.37481591082025
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        88.74533058555174,
+        162.37481591082025
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        86,
+        162
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        91.30357142857143,
+        163.47372055837118
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        88.74533058555174,
+        162.37481591082025
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        93.50038264330016,
+        165.22182540694797
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        91.30357142857143,
+        163.47372055837118
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        95.18605517585638,
+        167.5
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        93.50038264330016,
+        165.22182540694797
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        96.24571322885191,
+        170.15299050387227
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        95.18605517585638,
+        167.5
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        96.60714285714286,
+        173
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        96.24571322885191,
+        170.15299050387227
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        96.60714285714286,
+        194
+      ],
+      "y": 155,
+      "x": 59,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        96.60714285714286,
+        173
+      ],
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.2535714285714286,
+      "depth": 5
+    },
+    {
+      "y": 190,
+      "x": 66.71428571428571,
+      "height": 29,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 38.57142857142857,
+      "depth": 4
+    },
+    {
+      "y": 193,
+      "x": 68.64285714285714,
+      "height": 27,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0,
+        0,
+        0,
+        0.35
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "BACKGROUND",
+      "alpha": 1,
+      "width": 36.642857142857146,
+      "depth": 5
+    },
+    {
+      "y": 193,
+      "x": 66.71428571428571,
+      "height": 23,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 38.57142857142857,
+      "depth": 5
+    },
+    {
+      "y": 190,
+      "x": 69.60714285714285,
+      "height": 29,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.3,
+        0.18,
+        0.055,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 32.785714285714285,
+      "depth": 5
+    },
+    {
+      "y": 193,
+      "x": 68.16071428571428,
+      "height": 23,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 35.67857142857143,
+      "depth": 5
+    },
+    {
+      "y": 191.5,
+      "x": 69.60714285714285,
+      "height": 26,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.91,
+        0.64,
+        0.2,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 32.785714285714285,
+      "depth": 5
+    },
+    {
+      "y": 193,
+      "x": 69.60714285714285,
+      "height": 21,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.77,
+        0.5,
+        0.12,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 32.785714285714285,
+      "depth": 5
+    },
+    {
+      "y": 193,
+      "x": 69.60714285714285,
+      "height": 7,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.93,
+        0.69,
+        0.27,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 32.785714285714285,
+      "depth": 5
+    },
+    {
+      "y": 191.5,
+      "x": 69.60714285714285,
+      "height": 1.6,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        1,
+        0.87,
+        0.48,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 32.785714285714285,
+      "depth": 5
+    },
+    {
+      "y": 216,
+      "x": 69.60714285714285,
+      "height": 1.5,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.43,
+        0.26,
+        0.065,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 32.785714285714285,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        102.39285714285714,
+        190
+      ],
+      "y": 190,
+      "x": 66.71428571428571,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        69.60714285714285,
+        190
+      ],
+      "vertexColor": [
+        0.99,
+        0.79,
+        0.35,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.157142857142857,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        105.28571428571428,
+        193
+      ],
+      "y": 190,
+      "x": 66.71428571428571,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        102.39285714285714,
+        190
+      ],
+      "vertexColor": [
+        0.99,
+        0.79,
+        0.35,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.157142857142857,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        105.28571428571428,
+        216
+      ],
+      "y": 190,
+      "x": 66.71428571428571,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        105.28571428571428,
+        193
+      ],
+      "vertexColor": [
+        0.99,
+        0.79,
+        0.35,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.157142857142857,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        102.39285714285714,
+        219
+      ],
+      "y": 190,
+      "x": 66.71428571428571,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        105.28571428571428,
+        216
+      ],
+      "vertexColor": [
+        0.99,
+        0.79,
+        0.35,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.157142857142857,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        69.60714285714285,
+        219
+      ],
+      "y": 190,
+      "x": 66.71428571428571,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        102.39285714285714,
+        219
+      ],
+      "vertexColor": [
+        0.99,
+        0.79,
+        0.35,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.157142857142857,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        66.71428571428571,
+        216
+      ],
+      "y": 190,
+      "x": 66.71428571428571,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        69.60714285714285,
+        219
+      ],
+      "vertexColor": [
+        0.99,
+        0.79,
+        0.35,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.157142857142857,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        66.71428571428571,
+        193
+      ],
+      "y": 190,
+      "x": 66.71428571428571,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        66.71428571428571,
+        216
+      ],
+      "vertexColor": [
+        0.99,
+        0.79,
+        0.35,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.157142857142857,
+      "depth": 5
+    },
+    {
+      "lineEnd": [
+        69.60714285714285,
+        190
+      ],
+      "y": 190,
+      "x": 66.71428571428571,
+      "height": 0,
+      "kind": "Line",
+      "fontSize": 12,
+      "lineStart": [
+        66.71428571428571,
+        193
+      ],
+      "vertexColor": [
+        0.99,
+        0.79,
+        0.35,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 0,
+      "thickness": 1.157142857142857,
+      "depth": 5
+    },
+    {
+      "y": 199.4,
+      "x": 83.49285714285713,
+      "height": 5.2,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.09,
+        0.065,
+        0.022,
+        1
+      ],
+      "texture": "Interface\\CHARACTERFRAME\\TempPortraitAlphaMask",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 5.014285714285714,
+      "depth": 5
+    },
+    {
+      "y": 202,
+      "x": 85.03571428571428,
+      "height": 7,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.09,
+        0.065,
+        0.022,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 1.9285714285714286,
+      "depth": 5
+    },
+    {
+      "y": 188,
+      "x": 64.78571428571429,
+      "height": 33,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 0,
+      "width": 42.42857142857143,
+      "depth": 4
+    },
+    {
+      "y": 190,
+      "x": 64.78571428571429,
+      "height": 29,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.32,
+        1,
+        0.15,
+        0.17
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 0,
+      "width": 42.42857142857143,
+      "depth": 5
+    },
+    {
+      "y": 188,
+      "x": 66.71428571428572,
+      "height": 33,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.32,
+        1,
+        0.15,
+        0.13
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 0,
+      "width": 38.57142857142857,
+      "depth": 5
+    },
+    {
+      "y": 190,
+      "x": 66.71428571428572,
+      "height": 2,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.32,
+        1,
+        0.15,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 0,
+      "width": 38.57142857142857,
+      "depth": 5
+    },
+    {
+      "y": 217,
+      "x": 66.71428571428572,
+      "height": 2,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.32,
+        1,
+        0.15,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 0,
+      "width": 38.57142857142857,
+      "depth": 5
+    },
+    {
+      "y": 192,
+      "x": 66.71428571428572,
+      "height": 25,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.32,
+        1,
+        0.15,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 0,
+      "width": 1.9285714285714286,
+      "depth": 5
+    },
+    {
+      "y": 192,
+      "x": 103.35714285714286,
+      "height": 25,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.32,
+        1,
+        0.15,
+        1
+      ],
+      "texture": "Interface\\Buttons\\WHITE8X8",
+      "layer": "ARTWORK",
+      "alpha": 0,
+      "width": 1.9285714285714286,
+      "depth": 5
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "y": 166,
+      "x": 560,
+      "height": 51,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 137,
+      "depth": 3
+    },
+    {
+      "y": 166,
+      "x": 560,
+      "height": 51,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.34,
+        0.93,
+        0.24,
+        1
+      ],
+      "texture": "Interface\\CHARACTERFRAME\\TempPortraitAlphaMask",
+      "layer": "BACKGROUND",
+      "alpha": 1,
+      "width": 51,
+      "depth": 4
+    },
+    {
+      "colorTexture": [
+        0.34,
+        0.93,
+        0.24,
+        1
+      ],
+      "y": 166,
+      "x": 585,
+      "height": 51,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "BACKGROUND",
+      "alpha": 1,
+      "width": 87,
+      "depth": 4
+    },
+    {
+      "y": 166,
+      "x": 646,
+      "height": 51,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.34,
+        0.93,
+        0.24,
+        1
+      ],
+      "texture": "Interface\\CHARACTERFRAME\\TempPortraitAlphaMask",
+      "layer": "BACKGROUND",
+      "alpha": 1,
+      "width": 51,
+      "depth": 4
+    },
+    {
+      "y": 169,
+      "x": 563,
+      "height": 45,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.025,
+        0.19,
+        0.016,
+        1
+      ],
+      "texture": "Interface\\CHARACTERFRAME\\TempPortraitAlphaMask",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 45,
+      "depth": 4
+    },
+    {
+      "colorTexture": [
+        0.025,
+        0.19,
+        0.016,
+        1
+      ],
+      "y": 169,
+      "x": 585,
+      "height": 45,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 87,
+      "depth": 4
+    },
+    {
+      "y": 169,
+      "x": 649,
+      "height": 45,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.025,
+        0.19,
+        0.016,
+        1
+      ],
+      "texture": "Interface\\CHARACTERFRAME\\TempPortraitAlphaMask",
+      "layer": "ARTWORK",
+      "alpha": 1,
+      "width": 45,
+      "depth": 4
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": false,
+      "text": "ON",
+      "y": 172,
+      "x": 567,
+      "height": 39,
+      "kind": "FontString",
+      "fontSize": 23,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 75,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 4,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "y": 170,
+      "x": 648,
+      "height": 43,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.3,
+        0.43,
+        0.12,
+        1
+      ],
+      "texture": "Interface\\CHARACTERFRAME\\TempPortraitAlphaMask",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 43,
+      "depth": 4
+    },
+    {
+      "y": 173,
+      "x": 651,
+      "height": 37,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.85,
+        0.88,
+        0.57,
+        1
+      ],
+      "texture": "Interface\\CHARACTERFRAME\\TempPortraitAlphaMask",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 37,
+      "depth": 4
+    },
+    {
+      "y": 176,
+      "x": 657,
+      "height": 20,
+      "kind": "Texture",
+      "fontSize": 12,
+      "vertexColor": [
+        0.97,
+        0.99,
+        0.77,
+        0.46
+      ],
+      "texture": "Interface\\CHARACTERFRAME\\TempPortraitAlphaMask",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 20,
+      "depth": 4
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 252,
+      "x": 34,
+      "height": 178,
+      "kind": "Frame",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 692,
+      "depth": 2
+    },
+    {
+      "colorTexture": [
+        0.34,
+        0.29,
+        0.2,
+        0.28
+      ],
+      "y": 258,
+      "x": 41,
+      "height": 1,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "BORDER",
+      "alpha": 1,
+      "width": 678,
+      "depth": 3
+    },
+    {
+      "colorTexture": [
+        0,
+        0,
+        0,
+        0.55
+      ],
+      "y": 423,
+      "x": 41,
+      "height": 1,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "BORDER",
+      "alpha": 1,
+      "width": 678,
+      "depth": 3
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "Filtering mode",
+      "y": 273,
+      "x": 63,
+      "height": 30,
+      "kind": "FontString",
+      "fontSize": 24,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 634,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.64,
+        0.64,
+        0.61,
+        1
+      ]
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "Also filters paid boost and carry offers.",
+      "y": 381,
+      "x": 63,
+      "height": 37,
+      "kind": "FontString",
+      "fontSize": 21,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 634,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.64,
+        0.64,
+        0.61,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 312,
+      "x": 60,
+      "height": 54,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.067,
+        0.068,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 312,
+      "depth": 3
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": false,
+      "text": "Balanced",
+      "y": 318,
+      "x": 73,
+      "height": 42,
+      "kind": "FontString",
+      "fontSize": 26,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 286,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 4,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 312,
+      "x": 388,
+      "height": 54,
+      "kind": "Button",
+      "backdropColor": [
+        0.15,
+        0.105,
+        0.046,
+        1
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 312,
+      "depth": 3
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": false,
+      "text": "Strict",
+      "y": 318,
+      "x": 401,
+      "height": 42,
+      "kind": "FontString",
+      "fontSize": 26,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 286,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 4,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 438,
+      "x": 34,
+      "height": 122,
+      "kind": "Frame",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 692,
+      "depth": 2
+    },
+    {
+      "colorTexture": [
+        0.34,
+        0.29,
+        0.2,
+        0.28
+      ],
+      "y": 444,
+      "x": 41,
+      "height": 1,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "BORDER",
+      "alpha": 1,
+      "width": 678,
+      "depth": 3
+    },
+    {
+      "colorTexture": [
+        0,
+        0,
+        0,
+        0.55
+      ],
+      "y": 553,
+      "x": 41,
+      "height": 1,
+      "kind": "Texture",
+      "fontSize": 12,
+      "layer": "BORDER",
+      "alpha": 1,
+      "width": 678,
+      "depth": 3
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "Hidden this session",
+      "y": 459,
+      "x": 63,
+      "height": 30,
+      "kind": "FontString",
+      "fontSize": 25,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 366,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.64,
+        0.64,
+        0.61,
+        1
+      ]
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": "12",
+      "y": 499,
+      "x": 63,
+      "height": 50,
+      "kind": "FontString",
+      "fontSize": 44,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 350,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 481,
+      "x": 432,
+      "height": 57,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 268,
+      "depth": 3
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": false,
+      "text": "View messages",
+      "y": 487,
+      "x": 446.5,
+      "height": 45,
+      "kind": "FontString",
+      "fontSize": 25,
+      "justifyV": "MIDDLE",
+      "justifyH": "CENTER",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 221,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 4,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": ">",
+      "y": 495,
+      "x": 669,
+      "height": 31,
+      "kind": "FontString",
+      "fontSize": 28,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 22,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 4,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ]
+    },
+    {
+      "backdropBorderColor": [
+        0.34,
+        0.29,
+        0.19,
+        1
+      ],
+      "backdrop": {
+        "bgFile": "Interface\\Buttons\\WHITE8X8",
+        "edgeFile": "Interface\\Tooltips\\UI-Tooltip-Border",
+        "tile": false,
+        "edgeSize": 12,
+        "insets": {
+          "top": 3,
+          "right": 3,
+          "left": 3,
+          "bottom": 3
+        }
+      },
+      "y": 568,
+      "x": 34,
+      "height": 82,
+      "kind": "Button",
+      "backdropColor": [
+        0.065,
+        0.062,
+        0.053,
+        0.98
+      ],
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 692,
+      "depth": 2
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": false,
+      "text": "Advanced settings",
+      "y": 574,
+      "x": 108,
+      "height": 70,
+      "kind": "FontString",
+      "fontSize": 27,
+      "justifyV": "MIDDLE",
+      "justifyH": "LEFT",
+      "maxLines": 1,
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 585,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.91,
+        0.77,
+        1
+      ]
+    },
+    {
+      "shadowOffset": [
+        1,
+        -1
+      ],
+      "wordWrap": true,
+      "text": ">",
+      "y": 593,
+      "x": 68,
+      "height": 36,
+      "kind": "FontString",
+      "fontSize": 32,
+      "justifyV": "TOP",
+      "justifyH": "LEFT",
+      "layer": "OVERLAY",
+      "alpha": 1,
+      "width": 26,
+      "shadowColor": [
+        0,
+        0,
+        0,
+        0.85
+      ],
+      "depth": 3,
+      "font": "Fonts\\FRIZQT__.TTF",
+      "textColor": [
+        0.96,
+        0.74,
+        0.33,
+        1
+      ]
+    },
+    {
+      "y": 656,
+      "x": 51,
+      "height": 22,
+      "kind": "Frame",
+      "fontSize": 12,
+      "layer": "FRAME",
+      "alpha": 1,
+      "width": 658,
+      "depth": 1
+    }
+  ]
+}

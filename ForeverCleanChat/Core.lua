@@ -1,6 +1,6 @@
 local ADDON, NS = ...
 local N, R = NS.Normalize, NS.Rules
-NS.VERSION = '1.0.0'
+NS.VERSION = '1.1.2'
 NS.Events = {'CHAT_MSG_CHANNEL','CHAT_MSG_SAY','CHAT_MSG_YELL','CHAT_MSG_WHISPER','CHAT_MSG_EMOTE'}
 NS.sessionBlocked, NS.sessionErrors = 0, 0
 NS.log, NS.installed = {}, false

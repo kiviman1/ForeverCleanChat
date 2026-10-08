@@ -1,6 +1,6 @@
 # ForeverCleanChat executed test report
 
-Generated UTC: 2026-09-30T18:12:22.557636+00:00
+Generated UTC: 2026-10-08T22:58:33.461806+00:00
 
 Python: `C:\Python314\python.exe` (3.14.4)
 
@@ -97,14 +97,19 @@ These checks execute the actual addon callbacks on stateful native-frame doubles
 
 | Runtime | Interaction assertions | Native UI rendering | Target Forever client |
 |---|---:|---|---|
-| Lua 5.1 | 616/616 | not_run | not_run |
-| Lua 5.3 | 616/616 | not_run | not_run |
+| Lua 5.1 | 1466/1466 | not_run | not_run |
+| Lua 5.3 | 1466/1466 | not_run | not_run |
 
 | UI interaction group | Lua 5.1 | Lua 5.3 |
 |---|---|---|
 | startup_and_panel_navigation | passed_mock | passed_mock |
 | minimap_click_tooltip_and_visibility | passed_mock | passed_mock |
 | overview_controls_and_shortcuts | passed_mock | passed_mock |
+| home_live_protection_state_and_count | passed_mock | passed_mock |
+| padlock_on_off_stage_order_and_idle_cleanup | passed_mock | passed_mock |
+| padlock_rapid_reversal_preserves_current_visual_state | passed_mock | passed_mock |
+| padlock_hidden_tabs_slash_minimap_and_close_settle_state | passed_mock | passed_mock |
+| padlock_finite_overshoot_idempotence_and_native_fallback | passed_mock | passed_mock |
 | settings_immediately_change_filtering | passed_mock | passed_mock |
 | lists_validate_edit_and_preserve_builtin_pack | passed_mock | passed_mock |
 | lists_search_paging_and_row_selection | passed_mock | passed_mock |
@@ -118,6 +123,13 @@ These checks execute the actual addon callbacks on stateful native-frame doubles
 | settings_validation_caps_and_malformed_saved_ui | passed_mock | passed_mock |
 | missing_optional_apis_and_ui_errors_do_not_disable_filter | passed_mock | passed_mock |
 | native_regions_have_nonnegative_geometry | passed_mock | passed_mock |
+| explicit_fonts_and_button_glyphs_fit_under_global_font_changes | passed_mock | passed_mock |
+| advanced_controls_stay_inside_content_and_clear_gold_frame | passed_mock | passed_mock |
+| compact_scale_close_glyph_and_clean_footer | passed_mock | passed_mock |
+| long_row_labels_elide_but_full_values_and_actions_survive | passed_mock | passed_mock |
+| multiline_native_editor_keeps_a_fixed_scrollable_viewport | passed_mock | passed_mock |
+| footer_feedback_readable_without_covering_content | passed_mock | passed_mock |
+| reference_theme_local_textures_and_typography | passed_mock | passed_mock |
 
 ## Failures
 

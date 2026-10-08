@@ -1,4 +1,4 @@
-# Forever Clean Chat — 1.0.0
+# Forever Clean Chat — 1.1.2
 
 Forever sohbetinde gold, ücretli boost/carry, hesap ve ilerletme hizmeti
 reklamlarını yerel olarak gizleyen bağımsız addon. Forever Mini Reminder
@@ -24,13 +24,25 @@ Oyunda Python, JSON okuyucu, ek kütüphane veya harici program gerekmez.
 
 ## Kontrol paneli
 
+1.1.0 ana ekranı gönderilen tasarıma göre koyu dokulu arka plan, altın çerçeve,
+sohbet kalkanı amblemi ve serif yazıyla yenilendi. Ana ekranda koruma anahtarı,
+Balanced/Strict seçimi, gerçek oturum sayacı, **View messages** ve
+**Advanced settings** yer alır. Ana ekranda yan menü bulunmaz; ayrıntılı
+işlemler Advanced settings içindedir. **Home** düğmesi ana ekrana döner.
+
+1.1.2'de durum ışığı yerine animasyonlu asma kilit vardır. Koruma açıldığında
+açık kilit 0,5 saniyede belirir, halkası aşağı inip kapanır ve kısa bir yeşil
+parıltı verir. Koruma açıkken kapalı kilit görünür kalır. Koruma kapatıldığında
+halka yukarı kalkar; ardından açık kilit kaybolur. Panel ilk açıldığında mevcut
+durum hemen gösterilir; animasyon görünür panelde durum değişince çalışır.
+
 Panel dili İngilizcedir. Minimap simgesinde sol tık paneli açar/kapatır;
 sağ tık doğrudan Settings bölümünü açar. Simgeyi sürükleyerek minimap etrafında
 taşıyabilirsin. Panelin başlığını sürükleyerek pencereyi taşıyabilirsin; iki
 konum da kaydedilir. Escape paneli kapatır. Simge gizliyse `/fcc minimap reset`
 yeniden gösterir ve konumunu sıfırlar.
 
-- **Overview:** filtre anahtarı, oturum/toplam sayaçları, profil ve paket durumu.
+- **Home:** filtre anahtarı, profil ve gerçek oturum sayacı.
 - **Hidden messages:** son 50 gizlenen mesaj, arama, karar ayrıntıları ve oyuncu izin/engel işlemleri.
 - **Your lists:** özel alan adları, ifadeler, oyuncular ve alan adı istisnaları.
 - **Settings:** profil, alan adı politikası, beş sohbet türü ve minimap ayarları.
@@ -39,6 +51,14 @@ yeniden gösterir ve konumunu sıfırlar.
 Local Test sohbet kanalına mesaj göndermez ve gizleme sayacını artırmaz.
 Log temizlemek de sayaçları sıfırlamaz. Oyuncu, profil ve liste tercihleri
 önceki sürümden korunur; pencere/minimap tercihleri ayrıca saklanır.
+1.1.1 paneli önceki tasarımdan %28 küçüktür; küçük ekranlara sığmak için ayrıca
+otomatik küçülür. Ana ekran yaklaşık 547 × 521, ayrıntılı sayfalar 648 × 504 UI
+birimidir. Seçenek yazıları kendi font ve alan ölçülerine göre sığdırılır;
+uzun liste kayıtlarının tamamı üzerine gelince görünür. Local test giriş alanı
+sabit boyutludur ve uzun metni kaydırır. Kapatma düğmesi grafik X kullanır;
+alttaki `/fcc` yazısı kaldırıldı, komut kullanılmaya devam eder.
+Çerçeve ve amblem addonun
+yerel TGA dosyalarından yüklenir; internetten görsel indirilmez.
 
 ## Profiller ve alan adı politikası
 
@@ -149,7 +169,9 @@ görünür bırakılır. 4096 bayt, 32 alan adı adayı, aday başına 128 gör�
 bütçesi vardır. Karar/dedupe tamponları 256, oturum kaydı 50 girişle sınırlıdır.
 Oturumda tutulan ham mesajlar SavedVariables'a yazılmaz; `/reload` ile kaybolur.
 LineID yoksa 0,25 saniyelik sayaç tekilleştirmesi yaklaşık olabilir.
-OnUpdate/polling/zamanlayıcı yoktur. Canlı FPS/bellek ölçümü yapılmadı.
+Boşta polling veya sürekli OnUpdate yoktur. Kilit geçişi kısa süreli, geçen
+süreye bağlı animasyon callback'i kullanır; geçiş bitince veya panel gizlenince
+callback kaldırılır. Canlı FPS/bellek ölçümü yapılmadı.
 
 ## Üretim, test ve canlı kabul
 
